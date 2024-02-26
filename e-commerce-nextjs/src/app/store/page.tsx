@@ -1,3 +1,5 @@
+import Product from "../componets/product/product";
+
 export default function store() {
     return (
         <div className=" w-screen h-screen">
@@ -10,7 +12,7 @@ export default function store() {
                     </div>
                 </div>
                 <div className=" w-full flex flex-wrap border border-2 border-white rounded">
-
+                    <Product img={"https://picsum.photos/200/300"} imgAlt="randome photo" title={"title"} price={200}></Product>
                 </div>
 
                 
