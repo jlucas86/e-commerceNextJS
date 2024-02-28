@@ -13,6 +13,8 @@ export default function newUser() {
                 <br />
                 <button>Submit</button>
             </form>
+
+            <p>Already have an account? <a href="http://localhost:3000/login">Sign in here</a>.</p>
         </div>
     );
 }

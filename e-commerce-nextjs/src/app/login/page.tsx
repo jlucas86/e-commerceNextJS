@@ -9,6 +9,8 @@ export default function login() {
                 <br />
                 <button>Login</button>
             </form>
+
+            <p>Dont have an account? <a href="http://localhost:3000/newUser">Register here</a>.</p>
         </div>
     );
 }
