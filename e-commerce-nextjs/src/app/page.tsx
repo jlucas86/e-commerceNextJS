@@ -1,11 +1,11 @@
-
+import Header from "./componets/header/Header";
 export default function home() {
 
   return (
     <div>
-      <div>menu bar</div>
+      <Header></Header>
       <div className=" flex">
-        <div>menu/ filters</div>
+        <div>menu/filters</div>
         <div>item display</div>
       </div>
     </div>

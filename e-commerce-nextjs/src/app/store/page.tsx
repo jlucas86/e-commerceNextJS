@@ -1,4 +1,4 @@
-import Product from "../componets/product/product";
+import Product from "../sharedComponets/product/product";
 
 export default function store() {
     return (
