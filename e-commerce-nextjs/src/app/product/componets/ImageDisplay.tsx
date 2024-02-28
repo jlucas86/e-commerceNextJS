@@ -1,9 +1,8 @@
+'use client'
+
 import { useState } from "react";
 
-interface image {
-    url:string,
-    alt:string
-}
+import { image } from "@/app/interface/image";
 
 export default function ImageDisplay(props:{images:Array<image>}) {
 

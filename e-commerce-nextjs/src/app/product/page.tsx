@@ -1,14 +1,10 @@
-'use client'
+
 
 import { useState } from "react";
 
 import ImageDisplay from "./componets/ImageDisplay";
 
-
-interface image {
-    url:string,
-    alt:string
-}
+import { image } from "../interface/image";
 
 export default function product() {
 
