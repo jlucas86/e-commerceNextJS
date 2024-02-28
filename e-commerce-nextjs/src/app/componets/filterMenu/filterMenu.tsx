@@ -17,9 +17,7 @@ export default function FilterMenu(props:{}) {
                             <input type="checkbox" /> {type}
                         </div>);
                     })}
-
                 </div>
-
             </div>
         </div>
     );
