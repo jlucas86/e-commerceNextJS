@@ -1,14 +1,8 @@
 import axios, { AxiosResponse} from 'axios';
 
 // login
-export function login() {
-
-    console.log("in login");
-    
-
-    try {
-        const postData = async () => {
-            console.log("in post data");
+export const login = async () => {
+            console.log("in login");
             try {
                 const dataToSend = {username:"admin", password:"password"}
 
@@ -21,11 +15,9 @@ export function login() {
                 
             }
         }
-    } catch (error) {
-        
-    }
     
-}
+    
+
 
 // add user
 
