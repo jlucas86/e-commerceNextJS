@@ -2,7 +2,7 @@ export default function newUser() {
     return (
         <div className=" w-screen h-screen flex flex-col items-center justify-center border-2 border-white radious ">
             <h1>New User</h1>
-            <form action="">
+            <div className=" flex">
                 <input type="text" placeholder="Username" />
                 <br />
                 <input type="text" placeholder="Email" />
@@ -12,7 +12,9 @@ export default function newUser() {
                 <input type="password" placeholder="confirm Password" />
                 <br />
                 <button>Submit</button>
-            </form>
+            </div>
+                
+            
 
             <p>Already have an account? <a href="http://localhost:3000/login">Sign in here</a>.</p>
         </div>
