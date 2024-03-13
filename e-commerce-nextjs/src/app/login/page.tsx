@@ -49,21 +49,23 @@ export default function Login() {
     return(
         <div className=" w-screen h-screen flex flex-col items-center justify-center border-2 border-white radious ">
             <h1>Log In</h1>
-            {/* <form action="" method="post">
-                <input type="text" placeholder="Username" />
-                <br />
-                <input type="password" placeholder="Password"/>
-                <br /> */}
-                <button onClick={loginButton}>Login</button>
-                <button onClick={getAllUsers}> get all users</button>
-            {/* </form> */}
+            
 
-            <form onSubmit={onSubmit}>
-                <input type="text" name="username" placeholder='Username'/>
-                <br />
-                <input type="password" name="password" placeholder='Password' />
-                <br />
-                <button type="submit">Submit</button>
+            <form  method="post" action="http://localhost:8080/login">
+                <h2 >Please login</h2>
+                <p>
+                    <label >Username</label>
+                    <input type="text" id="username" name="username"  placeholder="Username"  />
+                </p>
+                <p>
+                    <label >Password</label>
+                    <input type="password" id="password" name="password"  placeholder="Password" />
+                </p>
+                <p>
+                    Rememebr me
+                    <input type="checkbox" id="remember-me" name="remember-me" />
+                </p>
+                <button  type="submit">login</button>
             </form>
 
 
