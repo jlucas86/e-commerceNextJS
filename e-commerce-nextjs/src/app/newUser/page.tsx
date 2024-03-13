@@ -1,18 +1,35 @@
+'use client'
+
+import { ChangeEvent, useState } from "react";
+
+
 export default function newUser() {
+
+    const [username, setUsername] = useState<string>("")
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("")
+    const [confermPassword, setConfermPassword] = useState<string>("")
+
+
+    const addUser = () =>{
+
+    }
+
+    
     return (
         <div className=" w-screen h-screen flex flex-col items-center justify-center border-2 border-white radious ">
             <h1>New User</h1>
-            <div className=" flex">
-                <input type="text" placeholder="Username" />
+            
+                <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)}/>
                 <br />
-                <input type="text" placeholder="Email" />
+                <input type="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
                 <br />
-                <input type="password" placeholder="Password" />
+                <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
                 <br />
-                <input type="password" placeholder="confirm Password" />
+                <input type="password" placeholder="confirm Password" value={confermPassword} onChange={e => setConfermPassword(e.target.value)} />
                 <br />
-                <button>Submit</button>
-            </div>
+                <button onClick={addUser}>Submit</button>
+            
                 
             
 

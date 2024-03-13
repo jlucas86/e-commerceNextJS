@@ -49,7 +49,6 @@ export default function Login() {
     return(
         <div className=" w-screen h-screen flex flex-col items-center justify-center border-2 border-white radious ">
             <h1>Log In</h1>
-            
 
             <form  method="post" action="http://localhost:8080/login">
                 <h2 >Please login</h2>
