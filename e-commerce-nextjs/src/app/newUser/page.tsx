@@ -1,6 +1,7 @@
 'use client'
 
-import { ChangeEvent, useState } from "react";
+import axios from "axios";
+import { ChangeEvent, useEffect, useState } from "react";
 
 
 export default function newUser() {
@@ -10,9 +11,62 @@ export default function newUser() {
     const [password, setPassword] = useState<string>("")
     const [confermPassword, setConfermPassword] = useState<string>("")
 
+    useEffect(()=>{
+        if(password != confermPassword)
+            console.log("passwords do not match");
+            
+    },[password, confermPassword])
 
-    const addUser = () =>{
 
+    const addUser = async () =>{
+
+        console.log(username, email, password, confermPassword);
+
+
+        // axios.post('http://localhost:8080/user/addUser', {
+        //     "email":"email1",
+        //     "username":"jimmithy1",
+        //     "password":"password",
+        //     "role":null
+        //   })
+        //   .then(function (response) {
+        //     console.log(response);
+        //   })
+        //   .catch(function (error) {
+        //     console.log(error);
+        //   });
+
+        // fetch("http://localhost:8080/user/addUser", {
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         email:"email1",
+        //         username:"jimmithy1",
+        //         password:"password",
+        //         role:null
+        //     }),
+        //     headers: {
+        //         "Content-type": "application/json; charset=UTF-8"
+        //     }
+        //     });
+
+        const response = await fetch("http://localhost:8080/user/addUser", {
+            method: "POST",
+            body: JSON.stringify({
+                email: email,
+                username: username,
+                password: password,
+                role:null
+            }),
+            headers: {
+                "Content-type": "application/json;"
+            }
+            });
+        
+        const data = await response.json()
+        console.log(data);
+        
+            
+        
     }
 
     
