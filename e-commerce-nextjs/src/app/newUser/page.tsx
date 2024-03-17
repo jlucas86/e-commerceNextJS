@@ -10,6 +10,7 @@ export default function newUser() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("")
     const [confermPassword, setConfermPassword] = useState<string>("")
+    const [seller, setSeller] = useState<boolean>(false)
 
     useEffect(()=>{
         if(password != confermPassword)
@@ -21,33 +22,6 @@ export default function newUser() {
     const addUser = async () =>{
 
         console.log(username, email, password, confermPassword);
-
-
-        // axios.post('http://localhost:8080/user/addUser', {
-        //     "email":"email1",
-        //     "username":"jimmithy1",
-        //     "password":"password",
-        //     "role":null
-        //   })
-        //   .then(function (response) {
-        //     console.log(response);
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error);
-        //   });
-
-        // fetch("http://localhost:8080/user/addUser", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         email:"email1",
-        //         username:"jimmithy1",
-        //         password:"password",
-        //         role:null
-        //     }),
-        //     headers: {
-        //         "Content-type": "application/json; charset=UTF-8"
-        //     }
-        //     });
 
         const response = await fetch("http://localhost:8080/user/addUser", {
             method: "POST",
@@ -82,6 +56,10 @@ export default function newUser() {
                 <br />
                 <input type="password" placeholder="confirm Password" value={confermPassword} onChange={e => setConfermPassword(e.target.value)} />
                 <br />
+                <div>
+                    Would you like to be a seller
+                    <input type="checkbox" name="seller" id="seller" defaultChecked={seller} onChange={e => setSeller(e.target.value)} />
+                </div>
                 <button onClick={addUser}>Submit</button>
             
                 
