@@ -23,7 +23,12 @@ export default function newUser() {
 
         console.log(username, email, password, confermPassword);
 
-        const response = await fetch("http://localhost:8080/user/addUser", {
+        if(password !== confermPassword){
+            return
+        }
+
+        try {
+            const response = await fetch("http://localhost:8080/user/addUser", {
             method: "POST",
             body: JSON.stringify({
                 email: email,
@@ -36,10 +41,13 @@ export default function newUser() {
             }
             });
         
-        const data = await response.json()
-        console.log(data);
-        
-            
+            const data = await response.json()
+            console.log(data);
+
+        } catch (error) {
+            console.log(error);     
+        }
+
         
     }
 
@@ -58,12 +66,10 @@ export default function newUser() {
                 <br />
                 <div>
                     Would you like to be a seller
-                    <input type="checkbox" name="seller" id="seller" defaultChecked={seller} onChange={e => setSeller(e.target.value)} />
+                    <input type="checkbox" name="seller" id="seller" defaultChecked={seller} onChange={e => {setSeller(!seller); console.log(seller);
+                    }} />
                 </div>
-                <button onClick={addUser}>Submit</button>
-            
-                
-            
+                <button onClick={addUser}>Submit</button>         
 
             <p>Already have an account? <a href="http://localhost:3000/login">Sign in here</a>.</p>
         </div>
