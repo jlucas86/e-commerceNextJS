@@ -11,7 +11,7 @@ export default function FilterMenu(props:{}) {
             </div>
             <div>
                 <h3>Types</h3>
-                <div>
+                <div className=" mx-4">
                     {types.map((type) =>{
                         return(<div>
                             <input type="checkbox" /> {type}

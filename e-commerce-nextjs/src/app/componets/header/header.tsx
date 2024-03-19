@@ -1,7 +1,7 @@
 
 
 
-export default function Header(prosp:{}) {
+export default function Header(props:{}) {
 
     
 
