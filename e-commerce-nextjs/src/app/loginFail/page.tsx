@@ -5,7 +5,7 @@ import axios, { AxiosResponse} from 'axios';
 
 import {login} from "../api/user/userApicalls"
 
-export default function Login() {
+export default function LoginFail() {
 
     const loginButton = () =>{
         console.log("in function");
@@ -50,8 +50,11 @@ export default function Login() {
         <div className=" w-screen h-screen flex flex-col items-center justify-center border-2 border-white radious ">
             <h1>Log In</h1>
 
-            <form className="flex flex-col items-center justify-center radious " method="post" action="http://localhost:8080/login">
+            <form className="flex flex-col items-center justify-center radious "  method="post" action="http://localhost:8080/login">
                 <h2 >Please login</h2>
+                <p className=" text-rose-700">
+                    Username and/or password does not exist.
+                </p>
                 <p>
                     <input type="text" id="username" name="username"  placeholder="Username"  />
                 </p>
