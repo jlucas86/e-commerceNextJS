@@ -27,7 +27,7 @@ export default function newUser() {
             return
         }
 
-        try {
+        
             const response = await fetch("http://localhost:8080/user/addUser", {
             method: "POST",
             body: JSON.stringify({
@@ -44,9 +44,7 @@ export default function newUser() {
             const data = await response.json()
             console.log(data);
 
-        } catch (error) {
-            console.log(error);     
-        }
+        
 
         
     }
