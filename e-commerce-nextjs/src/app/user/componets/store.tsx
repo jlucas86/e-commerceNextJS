@@ -1,6 +1,9 @@
 'use client'
 
 import { useState } from "react";
+
+import axios from "axios";
+
 export default function store(props:{}) {
 
 
@@ -49,14 +52,40 @@ export default function store(props:{}) {
     }
 
     const getAllStores =async () => {
-        const response = await fetch("http://localhost:8080/api/v1/store/getAllStore/timmithy", {
-            method: "GET"
-            });
+        // const response = await fetch("http://localhost:8080/api/v1/store/getAllStore/jimmithy");
         
-            const data = await response.json()
-            console.log(data);
+        //     const data = await response.json()
+        //     console.log(data);
+        axios.get('http://localhost:8080/api/v1/store/getAllStore/jimmithy')
+
 
     }
+
+    const getUser =async () => {
+        
+        // const response = await axios.get('http://localhost:8080/user/getUsername/jimmithy');
+        // console.log(response);
+
+        axios.get('http://localhost:8080/user/getUsername/jimmithy')
+        
+
+        // const response = await fetch("http://localhost:8080/user/getUsername/jimmithy?");
+        
+        // const response = await fetch("http://localhost:8080/user/getUsername/jimmithy?",{
+        //     method:"GET", 
+        //     mode:"no-cors",
+        //     cache:"no-cache",
+        //     credentials:"include"
+
+        // },
+        // );
+        
+        // const data = await response.json()
+        // console.log(data);
+
+    }
+
+
     
     return(
         <div className=" w-screen lg:w-1/2 border-2 border-white rounded" >
@@ -68,6 +97,7 @@ export default function store(props:{}) {
             </button>
             <br />
             <button onClick={getAllStores}>get all stores</button>
+            <button onClick={getUser}>get user</button>
             {adding == true &&
                 <div className=" ml-4">
                     <input type="text" placeholder="Name" onChange={e => setName(e.target.value)} />
@@ -78,7 +108,11 @@ export default function store(props:{}) {
                     <button onClick={addStore}>Add Store</button>
                 </div>
             }
+            <form method="get" action="http://localhost:8080/user/getUsername/jimmithy">
             
+            
+            <button  type="submit">getuserJ</button>
+          </form>
         </div>
     );
 }
