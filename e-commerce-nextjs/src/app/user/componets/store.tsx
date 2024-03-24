@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 
@@ -10,6 +10,10 @@ export default function store(props:{}) {
     const [adding, setAdding] = useState<boolean>(false)
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
+
+    const [stores, setStores] = useState([])
+
+    // useEffect({},[])
 
     const addStore = async () => {
 
@@ -30,58 +34,72 @@ export default function store(props:{}) {
             // const data = await response.json()
             // console.log(data);
 
-        const response = await fetch("http://localhost:8080/api/v1/store/addStore/timmithy", {
-            method: "POST",
-            body: JSON.stringify({
-                email: email,
-                username: username,
-                password: password,
-                role:null
-            }),
-            headers: {
-                "Content-type": "application/json;"
-            }
-            });
+            axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",{
+                name: name, 
+                description: description,
+            })
+
+        // const response = await fetch("http://localhost:8080/api/v1/store/addStore/jimmithy", {
+        //     method: "POST",
+        //     mode: "cors",
+        //     credentials:"include",
+        //     origin: "http://localhost:3000",
+        //     body: JSON.stringify({
+        //         name: name, 
+        //         description: description,
+        //     }),
+        //     headers: {
+        //         "Content-type": "application/json;"
+        //     }
+        //     });
         
-            const data = await response.json()
-            console.log(data);
+        //     const data = await response.json()
+        //     console.log(data);
 
         
         
         setAdding(false)
     }
 
-    const getAllStores =async () => {
+    const displayStores = () =>  {
+
+        return(
+            <div>
+                
+            </div>
+        )
+    }
+
+    const getAllStores = async () => {
         // const response = await fetch("http://localhost:8080/api/v1/store/getAllStore/jimmithy");
         
         //     const data = await response.json()
         //     console.log(data);
-        axios.get('http://localhost:8080/api/v1/store/getAllStore/jimmithy')
+        // axios.get('http://localhost:8080/api/v1/store/getAllStore/jimmithy')
+
+        // const response = await fetch("http://localhost:8080/api/v1/store/getAllStore/jimmithy");
+        const response = await axios.get("http://localhost:8080/api/v1/store/getAllStore/jimmithy")
+        
+        const data = await response.data
+        setStores(data)
+        console.log(data);
+
 
 
     }
 
-    const getUser =async () => {
+    const getUser = async () => {
         
         // const response = await axios.get('http://localhost:8080/user/getUsername/jimmithy');
         // console.log(response);
 
-        axios.get('http://localhost:8080/user/getUsername/jimmithy')
+        // axios.get('http://localhost:8080/user/getUsername/jimmithy')
         
 
-        // const response = await fetch("http://localhost:8080/user/getUsername/jimmithy?");
+        const response = await fetch("http://localhost:8080/user/getUsername/jimmithy");
         
-        // const response = await fetch("http://localhost:8080/user/getUsername/jimmithy?",{
-        //     method:"GET", 
-        //     mode:"no-cors",
-        //     cache:"no-cache",
-        //     credentials:"include"
-
-        // },
-        // );
-        
-        // const data = await response.json()
-        // console.log(data);
+        const data = await response.json()
+        console.log(data);
 
     }
 
@@ -92,6 +110,11 @@ export default function store(props:{}) {
             <div>
                 list of stores this will be done by mapping a list got from the api
             </div>
+            {stores.map(store =>
+                    <div>
+                        {store.id}
+                    </div>
+                )}
             <button onClick={() => setAdding(!adding)}>
                 + add store
             </button>
