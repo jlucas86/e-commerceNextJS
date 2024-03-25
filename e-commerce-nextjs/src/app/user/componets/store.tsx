@@ -13,50 +13,17 @@ export default function store(props:{}) {
 
     const [stores, setStores] = useState([])
 
-    // useEffect({},[])
 
-    const addStore = async () => {
+    
 
-        
-            // const response = await fetch("http://localhost:8080/api/v1/store/addStore/timmithy", {
-            // method: "POST",
-            // body: JSON.stringify({
-            //     name:"selle thing",
-            //     desciption: "i selll thing",
-            //     products: null,
-            //     userInfo: null
-            // }),
-            // headers: {
-            //     "Content-type": "application/json;"
-            // }
-            // });
-        
-            // const data = await response.json()
-            // console.log(data);
+    useEffect(()=>{getAllStores()},[])
 
-            axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",{
-                name: name, 
-                description: description,
-            })
+    const addStore = async () => {   
 
-        // const response = await fetch("http://localhost:8080/api/v1/store/addStore/jimmithy", {
-        //     method: "POST",
-        //     mode: "cors",
-        //     credentials:"include",
-        //     origin: "http://localhost:3000",
-        //     body: JSON.stringify({
-        //         name: name, 
-        //         description: description,
-        //     }),
-        //     headers: {
-        //         "Content-type": "application/json;"
-        //     }
-        //     });
-        
-        //     const data = await response.json()
-        //     console.log(data);
-
-        
+        axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",{
+            name: name, 
+            description: description,
+        })       
         
         setAdding(false)
     }
