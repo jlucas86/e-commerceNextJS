@@ -38,13 +38,7 @@ export default function store(props:{}) {
     }
 
     const getAllStores = async () => {
-        // const response = await fetch("http://localhost:8080/api/v1/store/getAllStore/jimmithy");
         
-        //     const data = await response.json()
-        //     console.log(data);
-        // axios.get('http://localhost:8080/api/v1/store/getAllStore/jimmithy')
-
-        // const response = await fetch("http://localhost:8080/api/v1/store/getAllStore/jimmithy");
         const response = await axios.get("http://localhost:8080/api/v1/store/getAllStore/jimmithy")
         
         const data = await response.data
