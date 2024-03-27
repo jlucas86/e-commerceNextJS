@@ -23,18 +23,11 @@ export default function store(props:{}) {
         axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",{
             name: name, 
             description: description,
-        })       
+        }).then(() => {
+            getAllStores()
+          })  
         
         setAdding(false)
-    }
-
-    const displayStores = () =>  {
-
-        return(
-            <div>
-                
-            </div>
-        )
     }
 
     const getAllStores = async () => {
