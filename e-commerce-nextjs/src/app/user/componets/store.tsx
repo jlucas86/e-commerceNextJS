@@ -57,6 +57,14 @@ export default function store(props:{}) {
 
     }
 
+    const updateStore = async () => {
+        
+    }
+    
+    const deleteStore = async () => {
+        
+    }
+
 
     
     return(
@@ -65,8 +73,17 @@ export default function store(props:{}) {
                 list of stores this will be done by mapping a list got from the api
             </div>
             {stores.map(store =>
-                    <div>
-                        {store.id}
+                    <div className=" flex  justify-between">
+                        
+                        <div>
+                            {store.name}
+                        </div>
+                        
+
+                        <div>
+                            <button onClick={updateStore}> Update</button>
+                            <button onClick={deleteStore} className=" border-2 border-red-700 rounded" > Delete</button>
+                        </div>
                     </div>
                 )}
             <button onClick={() => setAdding(!adding)}>
