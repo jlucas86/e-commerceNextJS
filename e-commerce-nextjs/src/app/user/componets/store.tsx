@@ -10,6 +10,7 @@ export default function store(props:{}) {
     const [adding, setAdding] = useState<boolean>(false)
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
+    const [error, setError] = useState<string>("");
 
     const [stores, setStores] = useState([])
 
@@ -19,6 +20,16 @@ export default function store(props:{}) {
     useEffect(()=>{getAllStores()},[])
 
     const addStore = async () => {   
+
+        if(name === ""){
+            setError("Store is blank")
+            return
+        }
+
+        if (description === "") {
+            setError("Description is blank")
+            return
+        }
 
         axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",{
             name: name, 
@@ -94,6 +105,7 @@ export default function store(props:{}) {
             <button onClick={getUser}>get user</button>
             {adding == true &&
                 <div className=" ml-4">
+                    <div>{error}</div>
                     <input type="text" placeholder="Name" onChange={e => setName(e.target.value)} />
                     <br />
                     <input type="text" placeholder="Description" onChange={e => setDescription(e.target.value)} />
