@@ -10,6 +10,8 @@ export default function store(props:{}) {
     const [adding, setAdding] = useState<boolean>(false)
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
+    const [updateName, setUpdateName] = useState<string>("");
+    const [updateDescription, setUpdateDescription] = useState<string>("");
     const [error, setError] = useState<string>("");
 
     const [stores, setStores] = useState([])
@@ -69,7 +71,16 @@ export default function store(props:{}) {
     }
 
     const updateStore = async () => {
+
+        const hold = stores[0]
+        hold.name = updateName
+        hold.description = updateDescription
         
+        axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",hold).then(() => {
+            getAllStores()
+          }).then(() => {
+            getAllStores()
+          })
     }
     
     const deleteStore = async (i:number) => {
@@ -91,16 +102,30 @@ export default function store(props:{}) {
                 list of stores this will be done by mapping a list got from the api
             </div>
             {stores.map((store,i) =>
-                    <div className=" flex  justify-between">
+                    <div>
+                        <div className=" flex  justify-between">
                         
-                        <div>
-                            {store.name}
+                            <div>
+                                {store.name}
+                            </div>
+                            <div>
+                                
+                                <button onClick={() =>deleteStore(i)} className=" border-2 border-red-700 rounded" > Delete</button>
+                            </div>
                         </div>
-                        <div>
-                            <button onClick={updateStore}> Update</button>
-                            <button onClick={() =>deleteStore(i)} className=" border-2 border-red-700 rounded" > Delete</button>
+                        <div className="ml-4">
+                            {store.description}
+                            <div>
+                                <input type="text" placeholder="Name" onChange={e => setUpdateName(e.target.value)} />
+                                <br />
+                                <input type="text" placeholder="Description" onChange={e => setUpdateDescription(e.target.value)} />
+                                <br />
+                                <button onClick={updateStore}> Update</button>
+                            </div>
                         </div>
+                        
                     </div>
+                    
                 )}
             <button onClick={() => setAdding(!adding)}>
                 + add store
