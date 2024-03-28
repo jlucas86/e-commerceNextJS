@@ -72,8 +72,14 @@ export default function store(props:{}) {
         
     }
     
-    const deleteStore = async () => {
+    const deleteStore = async (i:number) => {
+
+        console.log(stores[i]);
         
+
+        axios.delete("http://localhost:8080/api/v1/store/deleteStore/jimmithy").then(() => {
+            getAllStores()
+          })
     }
 
 
@@ -83,7 +89,7 @@ export default function store(props:{}) {
             <div>
                 list of stores this will be done by mapping a list got from the api
             </div>
-            {stores.map(store =>
+            {stores.map((store,i) =>
                     <div className=" flex  justify-between">
                         
                         <div>
@@ -93,7 +99,7 @@ export default function store(props:{}) {
 
                         <div>
                             <button onClick={updateStore}> Update</button>
-                            <button onClick={deleteStore} className=" border-2 border-red-700 rounded" > Delete</button>
+                            <button onClick={() =>deleteStore(i)} className=" border-2 border-red-700 rounded" > Delete</button>
                         </div>
                     </div>
                 )}
