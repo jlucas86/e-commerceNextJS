@@ -77,7 +77,8 @@ export default function store(props:{}) {
         console.log(stores[i]);
         
 
-        axios.delete("http://localhost:8080/api/v1/store/deleteStore/jimmithy").then(() => {
+        axios.delete("http://localhost:8080/api/v1/store/deleteStore/jimmithy/1"
+        ).then(() => {
             getAllStores()
           })
     }
@@ -95,8 +96,6 @@ export default function store(props:{}) {
                         <div>
                             {store.name}
                         </div>
-                        
-
                         <div>
                             <button onClick={updateStore}> Update</button>
                             <button onClick={() =>deleteStore(i)} className=" border-2 border-red-700 rounded" > Delete</button>
