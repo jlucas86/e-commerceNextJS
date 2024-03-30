@@ -16,7 +16,7 @@ export default function store(props:{}) {
     const [updateName, setUpdateName] = useState<string>("");
     const [updateDescription, setUpdateDescription] = useState<string>("");
 
-    const [storeSubMenu, setStoreSubMenu] = useState<string>("hidden ");
+    const [storeSubMenu, setStoreSubMenu] = useState<array<string>>([]);
 
     const [error, setError] = useState<string>("");
 
@@ -56,7 +56,18 @@ export default function store(props:{}) {
         const data = await response.data
         setStores(data)
         console.log(data);
+        console.log(data.length);
+        
 
+        const dataHold:array<string> = []
+
+        for (let index = 0; index < data.length; index++) {
+            dataHold.push("hidden")
+            
+        }
+
+        
+        setStoreSubMenu(dataHold)
 
 
     }
@@ -102,24 +113,29 @@ export default function store(props:{}) {
 
 
     // render
-    const expansionButton = () =>{
+    const expansionButton = (i:number) =>{
         if(expand == false){
             return(
-                <button onClick={()=>expansionButtonClick()}>down</button>
+                <button onClick={()=>expansionButtonClick(i)}>down</button>
             )
         } else{
             return(
-                <button onClick={()=>expansionButtonClick()}>up</button>
+                <button onClick={()=>expansionButtonClick(i)}>up</button>
             )
         }
     }
 
-    const expansionButtonClick = () =>{
+    const expansionButtonClick = (i:number) =>{
+        
+        const hold:arry<String> = storeSubMenu;
+        
         // sub-menu is being shown
         if(expand === true){
-            setStoreSubMenu("hidden")
+            hold[i] = "hidden"
+            setStoreSubMenu(hold)
         } else{ // sub-menu is not being shown
-            setStoreSubMenu("ml-4")
+            hold[i] = "ml-4"
+            setStoreSubMenu(hold)
         }
         setExpand(!expand)
     }
@@ -139,13 +155,13 @@ export default function store(props:{}) {
                                 {store.name}
                             </div>
                             <div>
-                                {expansionButton()}
+                                {expansionButton(i)}
 
                                 
                                 <button onClick={() =>deleteStore(i)} className=" border-2 border-red-700 rounded" > Delete</button>
                             </div>
                         </div>
-                        <div className={storeSubMenu}>
+                        <div className={storeSubMenu[i]}>
                             {store.description}
                             <div>
                                 <input type="text" placeholder="Name" onChange={e => setUpdateName(e.target.value)} />
