@@ -8,10 +8,16 @@ export default function store(props:{}) {
 
 
     const [adding, setAdding] = useState<boolean>(false)
+    const [edit, setEdit] = useState<boolean>(false)
+    const [expand, setExpand] = useState<boolean>(false)
+
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [updateName, setUpdateName] = useState<string>("");
     const [updateDescription, setUpdateDescription] = useState<string>("");
+
+    const [storeSubMenu, setStoreSubMenu] = useState<string>("hidden ");
+
     const [error, setError] = useState<string>("");
 
     const [stores, setStores] = useState([])
@@ -95,6 +101,30 @@ export default function store(props:{}) {
     }
 
 
+    // render
+    const expansionButton = () =>{
+        if(expand == false){
+            return(
+                <button onClick={()=>expansionButtonClick()}>down</button>
+            )
+        } else{
+            return(
+                <button onClick={()=>expansionButtonClick()}>up</button>
+            )
+        }
+    }
+
+    const expansionButtonClick = () =>{
+        // sub-menu is being shown
+        if(expand === true){
+            setStoreSubMenu("hidden")
+        } else{ // sub-menu is not being shown
+            setStoreSubMenu("ml-4")
+        }
+        setExpand(!expand)
+    }
+
+
     
     return(
         <div className=" w-screen lg:w-1/2 border-2 border-white rounded" >
@@ -102,18 +132,20 @@ export default function store(props:{}) {
                 list of stores this will be done by mapping a list got from the api
             </div>
             {stores.map((store,i) =>
-                    <div>
+                    <div className="border-2 border-white rounded">
                         <div className=" flex  justify-between">
-                        
+
                             <div>
                                 {store.name}
                             </div>
                             <div>
+                                {expansionButton()}
+
                                 
                                 <button onClick={() =>deleteStore(i)} className=" border-2 border-red-700 rounded" > Delete</button>
                             </div>
                         </div>
-                        <div className="ml-4">
+                        <div className={storeSubMenu}>
                             {store.description}
                             <div>
                                 <input type="text" placeholder="Name" onChange={e => setUpdateName(e.target.value)} />
