@@ -127,10 +127,8 @@ export default function store(props:{}) {
 
     const updateButton = (i:number) =>{
         if(expandUpdate === false){
-            setExpandUpdate(true)
-            return (<button>update information</button>);
-        }else{
-            setExpandUpdate(false)
+            return (<button onClick={() =>updateButtonClick(i)}>update information</button>);
+        }else{ 
             return (<div>
                 <input type="text" placeholder="Name" onChange={e => setUpdateName(e.target.value)} />
                 <br />
@@ -143,7 +141,11 @@ export default function store(props:{}) {
     }
 
     const updateButtonClick = (i:number) =>{
-
+        if(expandUpdate === false){
+            setExpandUpdate(true)
+        }else{ 
+            setExpandUpdate(false)
+        }
     }
 
     const expansionButtonClick = (i:number) =>{
