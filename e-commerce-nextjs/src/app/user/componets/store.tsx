@@ -4,6 +4,12 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 
+interface updateMenu{
+    dispaly:boolean,
+    name:string,
+    desciption:string
+}
+
 export default function store(props:{}) {
 
 
@@ -16,6 +22,8 @@ export default function store(props:{}) {
     const [description, setDescription] = useState<string>("");
     const [updateName, setUpdateName] = useState<string>("");
     const [updateDescription, setUpdateDescription] = useState<string>("");
+
+    const [update, setUpdate] = useState<array<updateMenu>>([])
 
     const [storeSubMenu, setStoreSubMenu] = useState<array<string>>([]);
 
@@ -61,13 +69,21 @@ export default function store(props:{}) {
         
 
         const dataHold:array<string> = []
+        const storesUpdateHold:array<updateMenu> = []
 
         for (let index = 0; index < data.length; index++) {
             dataHold.push("hidden")
+
+            let updateHold:UpdateMenu = {display:false, name:"", desciption:""}
+            storesUpdateHold.push(updateHold)
             
         }
 
+        console.log(storesUpdateHold);
+        
+
         setStoreSubMenu(dataHold)
+        setUpdate(storesUpdateHold)
 
 
     }
@@ -125,8 +141,9 @@ export default function store(props:{}) {
         }
     }
 
-    const updateButton = (i:number) =>{
-        if(expandUpdate === false){
+    const updateMenu = (i:number) =>{
+        
+        if(update[i].display === false){
             return (<button onClick={() =>updateButtonClick(i)}>update information</button>);
         }else{ 
             return (<div>
@@ -137,15 +154,41 @@ export default function store(props:{}) {
                 <button onClick={updateStore}> Update</button>
             </div>);
         }
+        
+        
             
     }
 
     const updateButtonClick = (i:number) =>{
-        if(expandUpdate === false){
-            setExpandUpdate(true)
+        console.log(update[i]);
+        
+        /**
+         * try to find a new way to update withouth for loop.
+         * if not posible move for loop to its own function
+         */
+
+        const storesUpdateHold:array<updateMenu> = []
+        
+        if(update[i].display === false){
+            update[i].display = true
+            for (let index = 0; index < update.length; index++) {
+                if( index !== i)
+                    storesUpdateHold.push(update[index])
+                else
+                    storesUpdateHold.push(update[i])  
+            }
+            setUpdate(storesUpdateHold)
         }else{ 
-            setExpandUpdate(false)
+            update[i].display = false
+            for (let index = 0; index < update.length; index++) {
+                if( index !== i)
+                    storesUpdateHold.push(update[index])
+                else
+                    storesUpdateHold.push(update[i])  
+            }
+            setUpdate(storesUpdateHold)
         }
+        
     }
 
     const expansionButtonClick = (i:number) =>{
@@ -187,7 +230,7 @@ export default function store(props:{}) {
                         </div>
                         <div className={storeSubMenu[i]}>
                             <p>{store.description}</p>
-                            {updateButton(i)}
+                            {updateMenu(i)}
                             
                         </div>
                         
