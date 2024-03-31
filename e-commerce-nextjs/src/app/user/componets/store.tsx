@@ -10,6 +10,7 @@ export default function store(props:{}) {
     const [adding, setAdding] = useState<boolean>(false)
     const [edit, setEdit] = useState<boolean>(false)
     const [expand, setExpand] = useState<boolean>(false)
+    const [expandUpdate, setExpandUpdate] = useState<boolean>(false)
 
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
@@ -66,7 +67,6 @@ export default function store(props:{}) {
             
         }
 
-        
         setStoreSubMenu(dataHold)
 
 
@@ -125,6 +125,27 @@ export default function store(props:{}) {
         }
     }
 
+    const updateButton = (i:number) =>{
+        if(expandUpdate === false){
+            setExpandUpdate(true)
+            return (<button>update information</button>);
+        }else{
+            setExpandUpdate(false)
+            return (<div>
+                <input type="text" placeholder="Name" onChange={e => setUpdateName(e.target.value)} />
+                <br />
+                <input type="text" placeholder="Description" onChange={e => setUpdateDescription(e.target.value)} />
+                <br />
+                <button onClick={updateStore}> Update</button>
+            </div>);
+        }
+            
+    }
+
+    const updateButtonClick = (i:number) =>{
+
+    }
+
     const expansionButtonClick = (i:number) =>{
         
         const hold:arry<String> = storeSubMenu;
@@ -134,7 +155,7 @@ export default function store(props:{}) {
             hold[i] = "hidden"
             setStoreSubMenu(hold)
         } else{ // sub-menu is not being shown
-            hold[i] = "ml-4"
+            hold[i] = "ml-4 flex-col"
             setStoreSubMenu(hold)
         }
         setExpand(!expand)
@@ -157,19 +178,15 @@ export default function store(props:{}) {
                             <div>
                                 {expansionButton(i)}
 
+
                                 
                                 <button onClick={() =>deleteStore(i)} className=" border-2 border-red-700 rounded" > Delete</button>
                             </div>
                         </div>
                         <div className={storeSubMenu[i]}>
-                            {store.description}
-                            <div>
-                                <input type="text" placeholder="Name" onChange={e => setUpdateName(e.target.value)} />
-                                <br />
-                                <input type="text" placeholder="Description" onChange={e => setUpdateDescription(e.target.value)} />
-                                <br />
-                                <button onClick={updateStore}> Update</button>
-                            </div>
+                            <p>{store.description}</p>
+                            {updateButton(i)}
+                            
                         </div>
                         
                     </div>
