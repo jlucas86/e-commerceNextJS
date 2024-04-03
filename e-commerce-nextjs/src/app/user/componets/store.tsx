@@ -191,7 +191,7 @@ export default function store(props:{}) {
         
     }
 
-    const expansionButtonClick = (i:number) =>{ //coment
+    const expansionButtonClick = (i:number) =>{ //coment again
         
         const hold:arry<String> = storeSubMenu;
         
