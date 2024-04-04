@@ -151,6 +151,10 @@ export default function store(props:{}) {
                 <br />
                 <input type="text" placeholder="Description" onChange={e => setUpdateDescription(e.target.value)} />
                 <br />
+                <div className=" flex-row">
+                    <button onClick={updateStore}> Update</button>
+                    <button onClick={()=>cancelUpdateStore(i)}> cancel</button>
+                </div>
                 <button onClick={updateStore}> Update</button>
             </div>);
         }
@@ -190,8 +194,20 @@ export default function store(props:{}) {
         }
         
     }
+    const cancelUpdateStore = (i:number)=>{
+        const storesUpdateHold:array<updateMenu> = []
+        update[i].display = false
 
-    const expansionButtonClick = (i:number) =>{ //coment again
+        for (let index = 0; index < update.length; index++) {
+            if( index !== i)
+                storesUpdateHold.push(update[index])
+            else
+                storesUpdateHold.push(update[i])  
+        }
+        setUpdate(storesUpdateHold)
+    }
+
+    const expansionButtonClick = (i:number) =>{ 
         
         const hold:arry<String> = storeSubMenu;
         
