@@ -110,7 +110,7 @@ export default function store(props:{}) {
         console.log(stores[i]);
         
 
-        axios.delete("http://localhost:8080/api/v1/store/deleteStore/jimmithy/1"
+        axios.delete("http://localhost:8080/api/v1/store/deleteStore/jimmithy/"+stores[i].id
         ).then(() => {
             getAllStores()
           })
@@ -203,8 +203,6 @@ export default function store(props:{}) {
     }
 
     const updateStore = async (i:number) => {
-
-        console.log(i, stores[i]);
         
         const hold = stores[i]
         hold.name = updateName
