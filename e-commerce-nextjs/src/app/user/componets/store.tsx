@@ -148,10 +148,15 @@ export default function store(props:{}) {
         const hold:arry<String> = storeSubMenu;
         
         // sub-menu is being shown
-        if(expand === true){
+        if(storeSubMenu[i] !== "hidden"){
+            console.log("hidden");
+            
             hold[i] = "hidden"
             setStoreSubMenu(hold)
         } else{ // sub-menu is not being shown
+
+            console.log("ml-4 flex-col");
+            
             hold[i] = "ml-4 flex-col"
             setStoreSubMenu(hold)
         }
