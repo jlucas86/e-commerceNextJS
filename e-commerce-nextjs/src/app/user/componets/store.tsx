@@ -130,7 +130,9 @@ export default function store(props:{}) {
 
     // render
     const expansionButton = (i:number) =>{
-        if(expand == false){
+
+        
+        if(storeSubMenu[i] === "hidden"){
             return(
                 <button onClick={()=>expansionButtonClick(i)}>down</button>
             )
@@ -139,6 +141,21 @@ export default function store(props:{}) {
                 <button onClick={()=>expansionButtonClick(i)}>up</button>
             )
         }
+    }
+
+    const expansionButtonClick = (i:number) =>{ 
+        
+        const hold:arry<String> = storeSubMenu;
+        
+        // sub-menu is being shown
+        if(expand === true){
+            hold[i] = "hidden"
+            setStoreSubMenu(hold)
+        } else{ // sub-menu is not being shown
+            hold[i] = "ml-4 flex-col"
+            setStoreSubMenu(hold)
+        }
+        setExpand(!expand)
     }
 
     const updateMenu = (i:number) =>{
@@ -207,20 +224,7 @@ export default function store(props:{}) {
         setUpdate(storesUpdateHold)
     }
 
-    const expansionButtonClick = (i:number) =>{ 
-        
-        const hold:arry<String> = storeSubMenu;
-        
-        // sub-menu is being shown
-        if(expand === true){
-            hold[i] = "hidden"
-            setStoreSubMenu(hold)
-        } else{ // sub-menu is not being shown
-            hold[i] = "ml-4 flex-col"
-            setStoreSubMenu(hold)
-        }
-        setExpand(!expand)
-    }
+    
 
 
     
