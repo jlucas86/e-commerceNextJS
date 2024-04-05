@@ -103,18 +103,7 @@ export default function store(props:{}) {
 
     }
 
-    const updateStore = async () => {
-
-        const hold = stores[0]
-        hold.name = updateName
-        hold.description = updateDescription
-        
-        axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",hold).then(() => {
-            getAllStores()
-          }).then(() => {
-            getAllStores()
-          })
-    }
+    
     
     const deleteStore = async (i:number) => {
 
@@ -174,15 +163,11 @@ export default function store(props:{}) {
                 <input type="text" placeholder="Description" onChange={e => setUpdateDescription(e.target.value)} />
                 <br />
                 <div className=" flex-row">
-                    <button onClick={updateStore}> Update</button>
+                    <button onClick={() =>updateStore(i)}> Update</button>
                     <button onClick={()=>cancelUpdateStore(i)}> cancel</button>
                 </div>
-                <button onClick={updateStore}> Update</button>
             </div>);
-        }
-        
-        
-            
+        }    
     }
 
     const updateButtonClick = (i:number) =>{
@@ -216,6 +201,22 @@ export default function store(props:{}) {
         }
         
     }
+
+    const updateStore = async (i:number) => {
+
+        console.log(i, stores[i]);
+        
+        const hold = stores[i]
+        hold.name = updateName
+        hold.description = updateDescription
+        
+        axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",hold).then(() => {
+            getAllStores()
+          }).then(() => {
+            getAllStores()
+          })
+    }
+
     const cancelUpdateStore = (i:number)=>{
         const storesUpdateHold:array<updateMenu> = []
         update[i].display = false
