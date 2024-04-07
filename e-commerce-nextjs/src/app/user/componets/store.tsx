@@ -106,10 +106,6 @@ export default function store(props:{}) {
     
     
     const deleteStore = async (i:number) => {
-
-        console.log(stores[i]);
-        
-
         axios.delete("http://localhost:8080/api/v1/store/deleteStore/jimmithy/"+stores[i].id
         ).then(() => {
             getAllStores()
