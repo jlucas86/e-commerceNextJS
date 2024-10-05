@@ -1,18 +1,19 @@
 import { List } from "postcss/lib/list";
-import product from "../product/page";
 import { useState } from "react";
+import { product } from "./interfaces/interfaces";
+import ProductComp from './componets/ProductComp'; // idk wtf is going on
 
 export default function cart() {
 
 
-    interface product {
-        id: Number; 
-        image: string;
-        name: String;
-        type: String;
-        description: String;
-        price: number;
-    }
+    // interface product {
+    //     id: Number; 
+    //     image: string;
+    //     name: String;
+    //     type: String;
+    //     description: String;
+    //     price: number;
+    // }
 
     const products: product[] = [
         {id:0, image:"https://picsum.photos/200/300", name:"thing1", type:"car", description:"it drives", price:10000.34},
@@ -38,19 +39,20 @@ export default function cart() {
                 <div className=" bg-blue-800 w-full">
                     {products.map((p)=> {
                         return(
-                            <div className="flex justify-between">
-                                <div className="flex">
-                                    <img src={p.image} alt="" />
-                                    <div className=" flex-col">
-                                        <div>{p.name}</div>
-                                        <div>{p.description}</div>
-                                    </div>
-                                </div>
+                            <ProductComp p={p}/>
+                            // <div className="flex justify-between">
+                            //     <div className="flex">
+                            //         <img src={p.image} alt="" />
+                            //         <div className=" flex-col">
+                            //             <div>{p.name}</div>
+                            //             <div>{p.description}</div>
+                            //         </div>
+                            //     </div>
                                 
-                                <div>
-                                    {p.price.toString()}
-                                </div>
-                            </div>
+                            //     <div>
+                            //         {p.price.toString()}
+                            //     </div>
+                            // </div>
                     )})}
                 </div>
                 <div className=" bg-green-700 w-64"> 
