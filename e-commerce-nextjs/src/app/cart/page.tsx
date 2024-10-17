@@ -40,22 +40,9 @@ export default function cart() {
                     {products.map((p)=> {
                         return(
                             <ProductComp p={p}/>
-                            // <div className="flex justify-between">
-                            //     <div className="flex">
-                            //         <img src={p.image} alt="" />
-                            //         <div className=" flex-col">
-                            //             <div>{p.name}</div>
-                            //             <div>{p.description}</div>
-                            //         </div>
-                            //     </div>
-                                
-                            //     <div>
-                            //         {p.price.toString()}
-                            //     </div>
-                            // </div>
                     )})}
                 </div>
-                <div className=" bg-green-700 w-64"> 
+                <div className=" bg-green-700 w-64 px-1"> 
                     Summary
                     <div>
                         <div className="flex justify-between">
