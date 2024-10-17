@@ -12,7 +12,12 @@ export default function ProductComp(props:{p:product}) {
     const changeQ = (e: ChangeEventHandler<HTMLInputElement> ) =>{
 
         if (e.target.value !== ''){
-            setQ(+e.target.value)
+            if(+e.target.value > 0)
+                setQ(+e.target.value)
+            else if (+e.target.value === 0){
+                //remove form cart
+                setQ(+e.target.value)
+            }
             console.log("herre", +e.target.value)
         }     
     }
@@ -26,9 +31,9 @@ export default function ProductComp(props:{p:product}) {
                         <div>{props.p.name}</div>
                         <div>{props.p.description}</div>
                     </div>
-                    <div className="text-black">
+                    <div className="text-black ">
                         <form action="">
-                            <input type="number" onChange={changeQ} defaultValue={q} />
+                            <input className=" w-10" type="number" onChange={changeQ} defaultValue={q} />
                         </form>
                         
                     </div>
