@@ -48,7 +48,6 @@ export default function cart() {
                         <div className="flex justify-between">
                             <p>item(s):</p>
                             <p>
-                                {/* {products.map((p)=> { return(total = total+ p.price) })} */}
                                 {Math.round(subtotal*100)/100}
                             </p>
                         </div>  
