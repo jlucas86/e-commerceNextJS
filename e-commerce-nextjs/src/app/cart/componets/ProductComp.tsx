@@ -29,7 +29,9 @@ export default function ProductComp(props:{p:product}) {
     return(
         <div className="flex justify-between p-1 m-2 bg-white rounded ">
             <div className="flex w-full ">
-                <img className=" rounded shadow" src={props.p.image} alt="" />
+                <div>
+                    <img className=" rounded shadow" src={props.p.image} alt="" />
+                </div>
                 <div className="flex justify-between w-full px-1 pt-1">
                     <div className=" flex-col">
                         <div>{props.p.name}</div>
