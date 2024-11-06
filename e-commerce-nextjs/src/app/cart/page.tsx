@@ -34,15 +34,15 @@ export default function cart() {
     
     return(
         <div>
-            <div>title bar</div>
-            <div className=" flex justify-between bg-red-600 mx-8">
-                <div className=" bg-blue-800 w-full">
+            <div className=" h-10 w-screen text-center bg-white shadow" >title bar</div>
+            <div className=" flex justify-between mx-8">
+                <div className=" w-full">
                     {products.map((p)=> {
                         return(
                             <ProductComp p={p}/>
                     )})}
                 </div>
-                <div className=" bg-green-700 w-64 px-1"> 
+                <div className="  w-64 px-1"> 
                     Summary
                     <div>
                         <div className="flex justify-between">
@@ -68,9 +68,9 @@ export default function cart() {
                         <p><b>{total} </b></p>
                     </div>
                     
-                    <button className=" bg-orange-500"> SECURE CHECKOUT</button>
+                    <button className=" bg-orange-500 rounded border px-4 py-1"> SECURE CHECKOUT</button>
                     <p>OR</p>
-                    <button className=" bg-blue-700"> 
+                    <button className=" bg-blue-700 rounded text-white border px-4 py-1"> 
                         <b><i>PAYPAL</i></b> Checkout
                     </button>
                  </div>

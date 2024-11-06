@@ -22,18 +22,22 @@ export default function ProductComp(props:{p:product}) {
         }     
     }
 
+    const removeButton = () =>{
+
+    }
+
     return(
-        <div className="flex justify-between p-1">
-            <div className="flex w-full  bg-orange-600">
-                <img src={props.p.image} alt="" />
+        <div className="flex justify-between p-1 m-2 bg-white rounded ">
+            <div className="flex w-full ">
+                <img className=" rounded shadow" src={props.p.image} alt="" />
                 <div className="flex justify-between w-full px-1 pt-1">
                     <div className=" flex-col">
                         <div>{props.p.name}</div>
                         <div>{props.p.description}</div>
                     </div>
-                    <div className="text-black ">
+                    <div className=" ">
                         <form action="">
-                            <input className=" w-10" type="number" onChange={changeQ} defaultValue={q} />
+                            <input className=" w-10 rounded border-gray-400 border shadow" type="number" onChange={changeQ} defaultValue={q} />
                         </form>
                         <button>Remove</button>
                         
@@ -42,7 +46,7 @@ export default function ProductComp(props:{p:product}) {
                 
             </div>
             
-            <div className="px-1 pt-1 w-20">
+            <div className="px-1 pt-1 w-20  dark:text-white ">
                 {props.p.price.toString()}
             </div>
         </div>
