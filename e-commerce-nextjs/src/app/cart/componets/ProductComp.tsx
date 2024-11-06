@@ -27,7 +27,7 @@ export default function ProductComp(props:{p:product}) {
     }
 
     return(
-        <div className="flex justify-between p-1 m-2 bg-white rounded ">
+        <div className="flex justify-between p-1 m-2 bg-white rounded shadow border ">
             <div className="flex w-full ">
                 <div>
                     <img className=" rounded shadow" src={props.p.image} alt="" />
