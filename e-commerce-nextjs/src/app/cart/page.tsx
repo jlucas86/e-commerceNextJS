@@ -3,6 +3,8 @@ import { useState } from "react";
 import { product } from "./interfaces/interfaces";
 import ProductComp from './componets/ProductComp'; // idk wtf is going on
 
+import TitleBar from "../sharedComponets/complex/titleBar";
+
 export default function cart() {
 
 
@@ -34,7 +36,8 @@ export default function cart() {
     
     return(
         <div>
-            <div className=" h-10 w-screen text-center bg-white shadow" >title bar</div>
+            <TitleBar></TitleBar>
+            {/* <div className=" h-10 w-screen text-center bg-white shadow" >title bar</div> */}
             <div className=" flex justify-between mx-8">
                 <div className=" w-full">
                     {products.map((p)=> {
