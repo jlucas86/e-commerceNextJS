@@ -28,7 +28,7 @@ export default function TitleBar() {
                 </div>
                 <div className=" flex  border-purple-300 border-2 rounded-3xl  my-2 bg-purple-300 ">
                     <input type="text" name="searchBar" id="searchBar" className=" rounded-3xl bg-purple-300 border-none px-2" />
-                    <button className=" px-2 rounded-3xl bg-purple-600" onClick={searchButtonClick}> search</button>
+                    <button className=" px-2 rounded-3xl bg-purple-400 border-2 border-purple-400" onClick={searchButtonClick}> search</button>
                 </div>
                 
 
