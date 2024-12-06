@@ -40,20 +40,27 @@ export default function cart() {
 
     const showAccountMenu = () =>{
         if (AccountMenu === false){
-            console.log(AccountMenu)
             AccountMenu = true
-            console.log(AccountMenu)
         } else{
-            console.log(AccountMenu)
             AccountMenu = false
-            console.log(AccountMenu)
+        }
+
+    }
+
+    let menuMenu:boolean = false
+    const showMenu = () =>{
+        console.log("show menu")
+        if (menuMenu === false){
+            menuMenu = true
+        } else{
+            menuMenu = false
         }
 
     }
     
     return(
         <div>
-            <TitleBar AccountMenu={showAccountMenu}></TitleBar>
+            <TitleBar AccountMenu={showAccountMenu} showMenu={showMenu}></TitleBar>
             {/* <div className=" h-10 w-screen text-center bg-white shadow" >title bar</div> */}
             <div className=" flex justify-between mx-8">
                 <div className=" w-full">
