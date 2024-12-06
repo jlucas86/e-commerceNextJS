@@ -1,3 +1,5 @@
+'use client'
+
 import { List } from "postcss/lib/list";
 import { useState } from "react";
 import { product } from "./interfaces/interfaces";
@@ -33,10 +35,25 @@ export default function cart() {
         subtotal += products[i].price
     
     var total = Math.round((subtotal + shiping)*100)/100
+
+    let AccountMenu:boolean = false
+
+    const showAccountMenu = () =>{
+        if (AccountMenu === false){
+            console.log(AccountMenu)
+            AccountMenu = true
+            console.log(AccountMenu)
+        } else{
+            console.log(AccountMenu)
+            AccountMenu = false
+            console.log(AccountMenu)
+        }
+
+    }
     
     return(
         <div>
-            <TitleBar></TitleBar>
+            <TitleBar AccountMenu={showAccountMenu}></TitleBar>
             {/* <div className=" h-10 w-screen text-center bg-white shadow" >title bar</div> */}
             <div className=" flex justify-between mx-8">
                 <div className=" w-full">

@@ -1,7 +1,9 @@
 'use client'
 
 
-export default function TitleBar() {
+export default function TitleBar(props:{AccountMenu:Function}) {
+
+    let userStat:boolean = true;
 
     const menuButtonClick = () =>{
         console.log("menu click")
@@ -20,10 +22,14 @@ export default function TitleBar() {
         
     }
 
+    const accountInfo = () =>{
+        props.AccountMenu()
+    }
+
     return (
         <div className=" h-14 w-screen px-7 flex justify-between items-center bg-white shadow" >
             <div className=" flex justify-center items-center">
-                <div>
+                <div className=" mr-4">
                     <button onClick={menuButtonClick}>menu</button>
                 </div>
                 <div className=" flex  border-purple-300 border-2 rounded-3xl  my-2 bg-purple-300 ">
@@ -37,6 +43,16 @@ export default function TitleBar() {
                 <button >websit name</button> 
             </a>
             <div onClick={homeClick}></div>
-            <div>account stuff</div>
+            <div>
+                <div>
+                    {userStat ? 
+                    (<div onClick={accountInfo}>
+                        Account Info
+                    </div>): 
+                    (<div>
+                        Log In / Register
+                    </div>) }
+                </div>
+            </div>
         </div>)
 }
