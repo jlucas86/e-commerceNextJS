@@ -38,33 +38,38 @@ export default function cart() {
     
     var total = Math.round((subtotal + shiping)*100)/100
 
+    const [mainStyle, setMainStyle] = useState("opacity-100")
+
     const [menuAccount, setMenuAccount] = useState(false)
 
     const showAccountMenu = () =>{
         if (menuAccount === false){
             setMenuAccount(true)
+            setMainStyle("opacity-25")
         } else{
             setMenuAccount(false)
+            setMainStyle("opacity-100")
         }
 
     }
     
-    const [menuMenu,setMenuMenu] = useState(false)
+    const [menuMenu,setMenuMenu] = useState(true)
 
     
     const showMenu = () =>{
         console.log("show menu")
         if (menuMenu === false){
             setMenuMenu(true)
+            setMainStyle("opacity-25")
         } else{
             setMenuMenu(false)
+            setMainStyle("opacity-100")
         }
 
     }
-    useEffect
     
     return(
-        <div>
+        <div className={mainStyle}>
             <TitleBar AccountMenu={showAccountMenu} showMenu={showMenu}></TitleBar>
             {menuMenu ? <StoreMenu/>: <div></div> }
             {menuAccount ? <AccountMenu/>: <div></div> }
