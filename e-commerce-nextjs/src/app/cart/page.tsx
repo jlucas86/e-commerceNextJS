@@ -1,11 +1,13 @@
 'use client'
 
 import { List } from "postcss/lib/list";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { product } from "./interfaces/interfaces";
 import ProductComp from './componets/ProductComp'; // idk wtf is going on
 
 import TitleBar from "../sharedComponets/complex/titleBar";
+import StoreMenu from "../sharedComponets/complex/storeMenu";
+import AccountMenu from "../sharedComponets/complex/accountMenu";
 
 export default function cart() {
 
@@ -36,31 +38,36 @@ export default function cart() {
     
     var total = Math.round((subtotal + shiping)*100)/100
 
-    let AccountMenu:boolean = false
+    const [menuAccount, setMenuAccount] = useState(false)
 
     const showAccountMenu = () =>{
-        if (AccountMenu === false){
-            AccountMenu = true
+        if (menuAccount === false){
+            setMenuAccount(true)
         } else{
-            AccountMenu = false
-        }
-
-    }
-
-    let menuMenu:boolean = false
-    const showMenu = () =>{
-        console.log("show menu")
-        if (menuMenu === false){
-            menuMenu = true
-        } else{
-            menuMenu = false
+            setMenuAccount(false)
         }
 
     }
     
+    const [menuMenu,setMenuMenu] = useState(false)
+
+    
+    const showMenu = () =>{
+        console.log("show menu")
+        if (menuMenu === false){
+            setMenuMenu(true)
+        } else{
+            setMenuMenu(false)
+        }
+
+    }
+    useEffect
+    
     return(
         <div>
             <TitleBar AccountMenu={showAccountMenu} showMenu={showMenu}></TitleBar>
+            {menuMenu ? <StoreMenu/>: <div></div> }
+            {menuAccount ? <AccountMenu/>: <div></div> }
             {/* <div className=" h-10 w-screen text-center bg-white shadow" >title bar</div> */}
             <div className=" flex justify-between mx-8">
                 <div className=" w-full">
