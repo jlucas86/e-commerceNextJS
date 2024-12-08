@@ -40,8 +40,8 @@ export default function cart() {
 
     const [mainStyle, setMainStyle] = useState("opacity-100")
 
+    // stuff for acount managment menu
     const [menuAccount, setMenuAccount] = useState(false)
-
     const showAccountMenu = () =>{
         if (menuAccount === false){
             setMenuAccount(true)
@@ -53,9 +53,8 @@ export default function cart() {
 
     }
     
-    const [menuMenu,setMenuMenu] = useState(false)
-
-    
+    // stuff for product menu
+    const [menuMenu,setMenuMenu] = useState(false)    
     const showMenu = () =>{
         console.log("show menu")
         if (menuMenu === false){
