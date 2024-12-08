@@ -53,7 +53,7 @@ export default function cart() {
 
     }
     
-    const [menuMenu,setMenuMenu] = useState(true)
+    const [menuMenu,setMenuMenu] = useState(false)
 
     
     const showMenu = () =>{
@@ -69,50 +69,52 @@ export default function cart() {
     }
     
     return(
-        <div className={mainStyle}>
-            <TitleBar AccountMenu={showAccountMenu} showMenu={showMenu}></TitleBar>
+        <div> 
             {menuMenu ? <StoreMenu/>: <div></div> }
             {menuAccount ? <AccountMenu/>: <div></div> }
             {/* <div className=" h-10 w-screen text-center bg-white shadow" >title bar</div> */}
-            <div className=" flex justify-between mx-8">
-                <div className=" w-full">
-                    {products.map((p)=> {
-                        return(
-                            <ProductComp p={p}/>
-                    )})}
-                </div>
-                <div className="  w-64 px-1"> 
-                    Summary
-                    <div>
-                        <div className="flex justify-between">
-                            <p>item(s):</p>
-                            <p>
-                                {Math.round(subtotal*100)/100}
-                            </p>
-                        </div>  
-                        <div className="flex justify-between">
-                            <p> Est. Delivery:</p>
-                            <p> {shiping} </p>    
-                        </div> 
+            <div className={mainStyle}>
+                <TitleBar AccountMenu={showAccountMenu} showMenu={showMenu}></TitleBar> 
+                <div className=" flex justify-between mx-8">
+                    <div className=" w-full">
+                        {products.map((p)=> {
+                            return(
+                                <ProductComp p={p}/>
+                        )})}
                     </div>
-                    <b>
-
-                        <div className=" flex justify-between border-b-2">
-                            <p>Apple Promo Code</p>
-                            <button> + </button>
+                    <div className="  w-64 px-1"> 
+                        Summary
+                        <div>
+                            <div className="flex justify-between">
+                                <p>item(s):</p>
+                                <p>
+                                    {Math.round(subtotal*100)/100}
+                                </p>
+                            </div>  
+                            <div className="flex justify-between">
+                                <p> Est. Delivery:</p>
+                                <p> {shiping} </p>    
+                            </div> 
                         </div>
-                    </b>
-                    <div className=" flex justify-between">
-                        <p> Est. Total: </p>
-                        <p><b>{total} </b></p>
+                        <b>
+
+                            <div className=" flex justify-between border-b-2">
+                                <p>Apple Promo Code</p>
+                                <button> + </button>
+                            </div>
+                        </b>
+                        <div className=" flex justify-between">
+                            <p> Est. Total: </p>
+                            <p><b>{total} </b></p>
+                        </div>
+                        
+                        <button className=" bg-orange-500 rounded border px-4 py-1"> SECURE CHECKOUT</button>
+                        <p>OR</p>
+                        <button className=" bg-blue-700 rounded text-white border px-4 py-1"> 
+                            <b><i>PAYPAL</i></b> Checkout
+                        </button>
                     </div>
-                    
-                    <button className=" bg-orange-500 rounded border px-4 py-1"> SECURE CHECKOUT</button>
-                    <p>OR</p>
-                    <button className=" bg-blue-700 rounded text-white border px-4 py-1"> 
-                        <b><i>PAYPAL</i></b> Checkout
-                    </button>
-                 </div>
+                </div>
             </div>
             
         </div>
