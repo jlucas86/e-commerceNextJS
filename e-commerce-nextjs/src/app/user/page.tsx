@@ -1,9 +1,77 @@
 'use client'
 
+import { useState } from "react";
 import TitleBar from "../sharedComponets/complex/titleBar";
 import Store from "./componets/store";
 
 export default function user() {
+
+    const [orderStyle, setOrderStyle] = useState("hidden")
+    const [storeStyle, setStoreStyle] = useState("hidden")
+    const [accountInfoStyle, setAccountInfoStyle] = useState("hidden")
+    const [paymentMethodStyle, setPaymentMethodStyle] = useState("hidden")
+    const [securityStyle, setSecurityStyle] = useState("hidden")
+
+    const orderClick = () =>{
+        if(orderStyle !=="hidden"){
+            
+        } else{
+            setOrderStyle("")
+            setStoreStyle("hidden")
+            setAccountInfoStyle("hidden")
+            setPaymentMethodStyle("hidden")
+            setStoreStyle("hidden")
+        }
+    }
+
+    const storeClick = () =>{
+        if(storeStyle !=="hidden"){
+            
+        } else{
+            setOrderStyle("hidden")
+            setStoreStyle("")
+            setAccountInfoStyle("hidden")
+            setPaymentMethodStyle("hidden")
+            setSecurityStyle("hidden")
+        }
+    }
+
+    const accountInfoClick = () =>{
+        if(accountInfoStyle !=="hidden"){
+            
+        } else{
+            setOrderStyle("hidden")
+            setStoreStyle("hidden")
+            setAccountInfoStyle("")
+            setPaymentMethodStyle("hidden")
+            setSecurityStyle("hidden")
+        }
+    }
+
+    const paymentMethodClick = () =>{
+        if(paymentMethodStyle !=="hidden"){
+            
+        } else{
+            setOrderStyle("hidden")
+            setStoreStyle("hidden")
+            setAccountInfoStyle("hidden")
+            setPaymentMethodStyle("")
+            setSecurityStyle("hidden")
+        }
+    }
+
+    const securityClick = () =>{
+        if(securityStyle !=="hidden"){
+            
+        } else{
+            setOrderStyle("hidden")
+            setStoreStyle("hidden")
+            setAccountInfoStyle("hidden")
+            setPaymentMethodStyle("hidden")
+            setSecurityStyle("")
+        }
+    }
+
     return(
         <div>
             
@@ -11,19 +79,19 @@ export default function user() {
 
             <div className=" flex justify-items-end">
                 <div className=" h-svh bg-gray-200 w-1/2 border border-gray-400 rounded  ">
-                    <div>
+                    <div onClick={orderClick}>
                         orders
                     </div>
-                    <div>
+                    <div onClick={storeClick}>
                         stores
                     </div>
-                    <div>
+                    <div onClick={accountInfoClick}>
                         account info
                     </div>
-                    <div>
+                    <div onClick={paymentMethodClick}>
                         payment menthods
                     </div>
-                    <div>
+                    <div onClick={securityClick}>
                         security
                     </div>
                 </div>
@@ -46,7 +114,23 @@ export default function user() {
                  */}
                 <div className=" bg-white w-1/2  border border-gray-400 rounded ">
                     menu information
+                    <div className={orderStyle}>
+                        orders
+                    </div>
+                    <div className={storeStyle}>
+                        stores
+                    </div>
+                    <div className={accountInfoStyle}>
+                        account information
+                    </div>
+                    <div className={paymentMethodStyle}>
+                        payment methods
+                    </div>
+                    <div className={securityStyle}>
+                        security
+                    </div>
                 </div>
+                
             </div>
 
             {/* <div className=" flex flex-wrap">
