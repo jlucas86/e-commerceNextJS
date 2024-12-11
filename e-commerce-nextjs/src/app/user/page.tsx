@@ -3,6 +3,10 @@
 import { useState } from "react";
 import TitleBar from "../sharedComponets/complex/titleBar";
 import Store from "./componets/store";
+import Orders from "./componets/orders";
+import AccountInfo from "./componets/accountInfo";
+import PaymentMethods from "./componets/paymentMethods";
+import Securtiy from "./componets/security";
 
 export default function user() {
 
@@ -113,14 +117,17 @@ export default function user() {
                  *   edited.
                  */}
                 <div className=" bg-white w-1/2  border border-gray-400 rounded ">
-                    menu information
-                    <div className={orderStyle}>
+                    <Orders style={orderStyle}/>
+                    {/* <div className={orderStyle}>
                         orders
-                    </div>
+                    </div> */}
                     <div className={storeStyle}>
                         stores
                     </div>
-                    <div className={accountInfoStyle}>
+                    <AccountInfo style={accountInfoStyle}/>
+                    <PaymentMethods style={paymentMethodStyle}/>
+                    <Securtiy style={securityStyle}/>
+                    {/* <div className={accountInfoStyle}>
                         account information
                     </div>
                     <div className={paymentMethodStyle}>
@@ -128,7 +135,7 @@ export default function user() {
                     </div>
                     <div className={securityStyle}>
                         security
-                    </div>
+                    </div> */}
                 </div>
                 
             </div>
