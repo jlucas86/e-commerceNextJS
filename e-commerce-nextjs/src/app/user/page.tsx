@@ -118,24 +118,12 @@ export default function user() {
                  */}
                 <div className=" bg-white w-1/2  border border-gray-400 rounded ">
                     <Orders style={orderStyle}/>
-                    {/* <div className={orderStyle}>
-                        orders
-                    </div> */}
                     <div className={storeStyle}>
                         stores
                     </div>
                     <AccountInfo style={accountInfoStyle}/>
                     <PaymentMethods style={paymentMethodStyle}/>
                     <Securtiy style={securityStyle}/>
-                    {/* <div className={accountInfoStyle}>
-                        account information
-                    </div>
-                    <div className={paymentMethodStyle}>
-                        payment methods
-                    </div>
-                    <div className={securityStyle}>
-                        security
-                    </div> */}
                 </div>
                 
             </div>
