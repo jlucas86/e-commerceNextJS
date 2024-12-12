@@ -1,5 +1,6 @@
 'use client'
 
+
 import { useState } from "react";
 import TitleBar from "../sharedComponets/complex/titleBar";
 import Store from "./componets/store";
@@ -7,6 +8,8 @@ import Orders from "./componets/orders";
 import AccountInfo from "./componets/accountInfo";
 import PaymentMethods from "./componets/paymentMethods";
 import Securtiy from "./componets/security";
+import axios from "axios";
+
 
 export default function user() {
 
@@ -76,6 +79,32 @@ export default function user() {
         }
     }
 
+    const  getAll = async() => {
+        axios.get("http://localhost:8080/user/getAllUsers")
+            .then(response => {
+                // Handle successful registration
+                console.log(response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
+    const  getone = async() => {
+
+        axios.get("http://localhost:8080/user/getUsername/jim",{
+            withCredentials: true
+        })
+            .then(response => {
+                // Handle successful registration
+                console.log(response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
+
     return(
         <div>
             
@@ -98,6 +127,8 @@ export default function user() {
                     <div onClick={securityClick}>
                         security
                     </div>
+                    <button onClick={getAll}> get all</button>
+                    <button onClick={getone}> get one</button>
                 </div>
                 {/**
                  * use this div as abox for other window types

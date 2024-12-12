@@ -47,6 +47,21 @@ export default function Login() {
         // ...
       }
 
+    const test = async() =>{
+        
+        axios.post('http://localhost:8080/login/', { "username":"jim", "password":"password" })
+            .then(response => {
+                // Handle successful registration
+                console.log('User logged in successfully:', response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error logging in user:', error);
+            });
+        
+         
+    }
+
     return(
         <div className=" w-screen h-screen flex flex-col items-center justify-center border-2 border-white radious ">
             <h1>Log In</h1>
@@ -64,6 +79,7 @@ export default function Login() {
                     <input type="checkbox" id="remember-me" name="remember-me" />
                 </p>
                 <button  type="submit">login</button>
+                <button onClick={test}>test</button>
             </form>
 
 
