@@ -165,7 +165,8 @@ export default function user() {
                 <Store></Store>
                 <div className=" w-screen lg:w-1/2 border border-2 border-white rounded">stores</div>
                 <div className=" w-screen lg:w-1/2 border border-2 border-white rounded">user info</div>
-            </div> */}
+             tests text
+             </div> */}
             
 
         </div>
