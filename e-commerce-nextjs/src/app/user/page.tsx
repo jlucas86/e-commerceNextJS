@@ -92,7 +92,22 @@ export default function user() {
     }
     const  getone = async() => {
 
-        axios.get("http://localhost:8080/user/getUsername/jim",{
+        axios.get("http://localhost:8080/user/getUsername/jim1",{
+            withCredentials: true
+        })
+            .then(response => {
+                // Handle successful registration
+                console.log(response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
+
+    const  isLoggedin = async() => {
+
+        axios.get("http://localhost:8080/user/isloggedIn",{
             withCredentials: true
         })
             .then(response => {
@@ -129,6 +144,7 @@ export default function user() {
                     </div>
                     <button onClick={getAll}> get all</button>
                     <button onClick={getone}> get one</button>
+                    <button onClick={isLoggedin}>loggedin</button>
                 </div>
                 {/**
                  * use this div as abox for other window types
@@ -165,7 +181,6 @@ export default function user() {
                 <Store></Store>
                 <div className=" w-screen lg:w-1/2 border border-2 border-white rounded">stores</div>
                 <div className=" w-screen lg:w-1/2 border border-2 border-white rounded">user info</div>
-             tests text
              </div> */}
             
 

@@ -1,9 +1,18 @@
 'use client'
 
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 
 export default function TitleBar(props:{AccountMenu:Function, showMenu:Function}) {
 
     let userStat:boolean = true;
+
+    const [loginStat, setLoginStat] = useState(false)
+
+    useEffect(()=>{
+        isLoggedin()
+    },[])
 
 
     const searchButtonClick = () =>{
@@ -27,11 +36,26 @@ export default function TitleBar(props:{AccountMenu:Function, showMenu:Function}
         props.showMenu()
     }
 
+    const  isLoggedin = async() => { 
+
+        axios.get("http://localhost:8080/user/isloggedIn",{
+            withCredentials: true
+        })
+            .then(response => {
+                // Handle successful registration
+                setLoginStat(response.data)
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
+
     return (
         <div className=" h-14 w-screen px-7 flex justify-between items-center bg-white shadow" >
             <div className=" flex justify-center items-center">
                 <div className=" mr-4">
-                    <button onClick={menuInfo}>menu</button>
+                    <button onClick={menuInfo}>Menu</button>
                 </div>
                 <div className=" flex  border-purple-300 border-2 rounded-3xl  my-2 bg-purple-300 ">
                     <input type="text" name="searchBar" id="searchBar" className=" rounded-3xl bg-purple-300 border-none px-2" />
@@ -41,18 +65,18 @@ export default function TitleBar(props:{AccountMenu:Function, showMenu:Function}
 
             </div>
             <a href="/">
-                <button >websit name</button> 
+                <button >Buy Lots</button> 
             </a>
             <div onClick={homeClick}></div>
             <div>
                 <div>
-                    {userStat ? 
+                    {loginStat ? 
                     (<div onClick={accountInfo}>
                         Account Info
                     </div>): 
-                    (<div>
+                    (<a href="/login">
                         Log In / Register
-                    </div>) }
+                    </a>) }
                 </div>
             </div>
         </div>)
