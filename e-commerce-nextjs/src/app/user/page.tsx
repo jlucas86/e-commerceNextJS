@@ -105,9 +105,54 @@ export default function user() {
             });
     }
 
-    const  isLoggedin = async() => {
+    const addAllRoles = async() => {
+        
+        axios.post("http://localhost:8080/api/v1/role/addAllRoles",{
+            withCredentials: true
+        })
+            .then(response => {
+                // Handle successful registration
+                console.log(response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
 
-        axios.get("http://localhost:8080/user/isloggedIn",{
+    const getAllRoles = async() => {
+        
+        axios.get("http://localhost:8080/api/v1/role/getAllRole",{
+            withCredentials: true
+        })
+            .then(response => {
+                // Handle successful registration
+                console.log(response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
+
+    const addAllPermissions = async() => {
+        
+        axios.post("http://localhost:8080/api/v1/permission/addAllPermissions",{
+            withCredentials: true
+        })
+            .then(response => {
+                // Handle successful registration
+                console.log(response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
+
+    const getAllPermissions = async() => {
+        
+        axios.get("http://localhost:8080/api/v1/permission/getAllPermissions",{
             withCredentials: true
         })
             .then(response => {
@@ -142,9 +187,18 @@ export default function user() {
                     <div onClick={securityClick}>
                         security
                     </div>
-                    <button onClick={getAll}> get all</button>
-                    <button onClick={getone}> get one</button>
-                    <button onClick={isLoggedin}>loggedin</button>
+                    <div>
+                        <button onClick={getAll}> get all</button>
+                        <button onClick={getone}> get one</button>
+                    </div>
+                    <div>
+                        <button onClick={addAllRoles}>add all roles</button>
+                        <button onClick={getAllRoles}>get all roles</button>
+                    </div>
+                    <div>
+                        <button onClick={addAllPermissions}>add all permissions</button>
+                        <button onClick={getAllPermissions}>get all permsision</button>
+                    </div>
                 </div>
                 {/**
                  * use this div as abox for other window types

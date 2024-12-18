@@ -11,12 +11,48 @@ export default function newUser() {
     const [password, setPassword] = useState<string>("")
     const [confermPassword, setConfermPassword] = useState<string>("")
     const [seller, setSeller] = useState<boolean>(false)
+    
+    let userRoles:any[] = []
 
     useEffect(()=>{
         if(password != confermPassword)
             console.log("passwords do not match");
+            // add make this such that it apears on the screen
             
     },[password, confermPassword])
+
+    const addNewUser = async () => {
+        if(seller === true){
+            getSellerRole()
+        } else {
+            getCustomerRole()
+        }
+    }
+
+    const getCustomerRole = async () => {
+        axios.get("http://localhost:8080/api/v1/role/getRole/2",{
+            withCredentials: true
+        })
+            .then(response => {
+                // Handle successful registration
+                userRoles.push(response.data)
+                addUser()
+                })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
+
+    const getSellerRole = async () => {     
+        axios.get("http://localhost:8080/api/v1/role/getRole/3",{
+            withCredentials: true
+        })
+            .then(response => {
+                userRoles.push(response.data)
+                getCustomerRole()
+            });     
+    }
 
 
     const addUser = async () =>{
@@ -26,16 +62,50 @@ export default function newUser() {
         if(password !== confermPassword){
             return
         }
+        
+        let roles = userRoles
+        axios.post("http://localhost:8080/user/addUser", {email, username, password, seller, roles})
+            .then(response => {
+                // Handle successful registration
+                console.log('User registered successfully:', response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+        
 
-            axios.post("http://localhost:8080/user/addUser", {email, username, password, seller})
-                .then(response => {
-                    // Handle successful registration
-                    console.log('User registered successfully:', response.data);
-                })
-                .catch(error => {
-                    // Handle registration errors
-                    console.error('Error registering user:', error);
-                });
+        // axios.get("http://localhost:8080/api/v1/role/getRole/2",{
+        //     withCredentials: true
+        // })
+        //     .then(response => {
+        //         // Handle successful registration
+        //         console.log(response.data);
+        //         let roles = [response.data]
+        //         axios.post("http://localhost:8080/user/addUser", {email, username, password, seller, roles})
+        //             .then(response => {
+        //                 // Handle successful registration
+        //                 console.log('User registered successfully:', response.data);
+        //             })
+        //             .catch(error => {
+        //                 // Handle registration errors
+        //                 console.error('Error registering user:', error);
+        //             });
+        //         })
+        //     .catch(error => {
+        //         // Handle registration errors
+        //         console.error('Error registering user:', error);
+        //     });
+
+        // axios.post("http://localhost:8080/user/addUser", {email, username, password, seller})
+        //     .then(response => {
+        //         // Handle successful registration
+        //         console.log('User registered successfully:', response.data);
+        //     })
+        //     .catch(error => {
+        //         // Handle registration errors
+        //         console.error('Error registering user:', error);
+        //     });
         
             // const response = await fetch("http://localhost:8080/user/addUser", {
             // method: "POST",
@@ -51,11 +121,7 @@ export default function newUser() {
             // });
         
             // const data = await response.json()
-            // console.log(data);
-
-        
-
-        
+            // console.log(data);   
     }
 
     
@@ -76,7 +142,7 @@ export default function newUser() {
                     <input type="checkbox" name="seller" id="seller" defaultChecked={seller} onChange={e => {setSeller(!seller); console.log(seller);
                     }} />
                 </div>
-                <button onClick={addUser}>Submit</button>         
+                <button onClick={addNewUser}>Submit</button>         
 
             <p>Already have an account? <a href="http://localhost:3000/login">Sign in here</a>.</p>
         </div>
