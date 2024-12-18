@@ -72,56 +72,7 @@ export default function newUser() {
             .catch(error => {
                 // Handle registration errors
                 console.error('Error registering user:', error);
-            });
-        
-
-        // axios.get("http://localhost:8080/api/v1/role/getRole/2",{
-        //     withCredentials: true
-        // })
-        //     .then(response => {
-        //         // Handle successful registration
-        //         console.log(response.data);
-        //         let roles = [response.data]
-        //         axios.post("http://localhost:8080/user/addUser", {email, username, password, seller, roles})
-        //             .then(response => {
-        //                 // Handle successful registration
-        //                 console.log('User registered successfully:', response.data);
-        //             })
-        //             .catch(error => {
-        //                 // Handle registration errors
-        //                 console.error('Error registering user:', error);
-        //             });
-        //         })
-        //     .catch(error => {
-        //         // Handle registration errors
-        //         console.error('Error registering user:', error);
-        //     });
-
-        // axios.post("http://localhost:8080/user/addUser", {email, username, password, seller})
-        //     .then(response => {
-        //         // Handle successful registration
-        //         console.log('User registered successfully:', response.data);
-        //     })
-        //     .catch(error => {
-        //         // Handle registration errors
-        //         console.error('Error registering user:', error);
-        //     });
-        
-            // const response = await fetch("http://localhost:8080/user/addUser", {
-            // method: "POST",
-            // body: JSON.stringify({
-            //     "email": email,
-            //     "username": username,
-            //     "password": password,
-            //     "role":null
-            // }),
-            // headers: {
-            //     "Content-type": "application/json;"
-            // }
-            // });
-        
-            // const data = await response.json()
-            // console.log(data);   
+            });  
     }
 
     
