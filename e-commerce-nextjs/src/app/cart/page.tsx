@@ -8,6 +8,7 @@ import ProductComp from './componets/ProductComp'; // idk wtf is going on
 import TitleBar from "../sharedComponets/complex/titleBar";
 import StoreMenu from "../sharedComponets/complex/storeMenu";
 import AccountMenu from "../sharedComponets/complex/accountMenu";
+import PageHeader from "../sharedComponets/complex/pageHeader";
 
 export default function cart() {
 
@@ -40,40 +41,12 @@ export default function cart() {
 
     const [mainStyle, setMainStyle] = useState("opacity-100")
 
-    // stuff for acount managment menu
-    const [menuAccount, setMenuAccount] = useState(false)
-    const showAccountMenu = () =>{
-        if (menuAccount === false){
-            setMenuAccount(true)
-            setMainStyle("opacity-25")
-        } else{
-            setMenuAccount(false)
-            setMainStyle("opacity-100")
-        }
-
-    }
-    
-    // stuff for product menu
-    const [menuMenu,setMenuMenu] = useState(false)    
-    const showMenu = () =>{
-        console.log("show menu")
-        if (menuMenu === false){
-            setMenuMenu(true)
-            setMainStyle("opacity-25")
-        } else{
-            setMenuMenu(false)
-            setMainStyle("opacity-100")
-        }
-
-    }
     
     return(
         <div> 
-            {menuMenu ? <StoreMenu/>: <div></div> }
-            {menuAccount ? <AccountMenu/>: <div></div> }
-            {/* <div className=" h-10 w-screen text-center bg-white shadow" >title bar</div> */}
+            <PageHeader mainStyle={mainStyle} setMainStyle={setMainStyle}></PageHeader>
+            
             <div className={mainStyle}>
-                <TitleBar AccountMenu={showAccountMenu} showMenu={showMenu}></TitleBar> 
                 <div className=" flex justify-between mx-8">
                     <div className=" w-full">
                         {products.map((p)=> {
