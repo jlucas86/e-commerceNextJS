@@ -1,8 +1,29 @@
+'use client'
+
+import axios from "axios";
+
 export default function AccountMenu() {
+
+    const logOut = async () =>{
+        console.log("button click")
+         axios.get('http://localhost:8080/logout',{
+            withCredentials: true
+        })
+         .then(response => {
+            // Handle successful registration
+            console.log(response.data)
+        })
+        .catch(error => {
+            // Handle registration errors
+            console.error('Error registering user:', error);
+        });
+    }
+
     return(
-        <div className=" absolute top-14 right-0 border border-gray-400 rounded bg-white p-3 opacity-100">
+        <div className=" z-30 absolute top-14 right-0 border border-gray-400 rounded bg-white p-3 opacity-100">
             <div> order history</div>
             <div> account details</div>
+            <button onClick={logOut}> logout</button>
         </div>
     );
 }
