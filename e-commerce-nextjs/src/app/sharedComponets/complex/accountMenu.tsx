@@ -11,11 +11,12 @@ export default function AccountMenu() {
         })
          .then(response => {
             // Handle successful registration
-            console.log(response.data)
+            console.log("in respone section")
+            location.replace("http://localhost:3000/")
         })
         .catch(error => {
             // Handle registration errors
-            console.error('Error registering user:', error);
+            console.error('Error lgoin out user:', error);
         });
     }
 
