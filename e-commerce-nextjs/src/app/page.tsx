@@ -11,11 +11,11 @@ export default function home() {
 
   return (
     
-    <div className=" " >
+    <div className="w-full " >
       <PageHeader mainStyle={mainStyle} setMainStyle={setMainStyle}></PageHeader>
 
       <div className={mainStyle}>
-            <div className="m-5 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7  gap-1 w-full">
+            <div className="m-5 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7  gap-1">
                         <Product img={"https://picsum.photos/200/300"} imgAlt="randome photo" title={"title"} price={200}></Product>
                         <Product img={"https://picsum.photos/200/300"} imgAlt="randome photo" title={"title"} price={200}></Product>
                         <Product img={"https://picsum.photos/200/300"} imgAlt="randome photo" title={"title"} price={200}></Product>
@@ -33,7 +33,7 @@ export default function home() {
                         <Product img={"https://picsum.photos/200/300"} imgAlt="randome photo" title={"title"} price={200}></Product>
                         <Product img={"https://picsum.photos/200/300"} imgAlt="randome photo" title={"title"} price={200}></Product>
                     </div>
-            <div>
+            <div className=" flex">
               pagMenu
             </div>
           

@@ -52,7 +52,7 @@ export default function TitleBar(props:{AccountMenu:Function, showMenu:Function}
     }
 
     return (
-        <div className=" h-14 w-screen px-7 flex justify-between items-center bg-white shadow" >
+        <div className=" h-14 w-full px-7 flex justify-between items-center bg-white shadow" >
             <div className=" flex justify-center items-center">
                 <div className=" mr-4">
                     <button onClick={menuInfo}>Menu</button>
