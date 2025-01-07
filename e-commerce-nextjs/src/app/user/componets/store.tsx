@@ -5,9 +5,36 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 interface updateMenu{
-    dispaly:boolean,
+    display:boolean,
     name:string,
     desciption:string
+}
+
+interface user{
+    id:Number,
+    email:String,
+    username:String,
+    password:String,
+    // roles
+    // stores
+}
+
+interface store{
+    id:Number,
+    name:String,
+    description:String,
+    user:user
+}
+
+interface products{
+    id:Number,
+    name:String,
+    type:String,
+    description:String,
+    price:Number,
+    store:store,
+    // carts
+    // orders
 }
 
 export default function store(props:{}) {
@@ -23,13 +50,13 @@ export default function store(props:{}) {
     const [updateName, setUpdateName] = useState<string>("");
     const [updateDescription, setUpdateDescription] = useState<string>("");
 
-    const [update, setUpdate] = useState<array<updateMenu>>([])
+    const [update, setUpdate] = useState<Array<updateMenu>>([])
 
-    const [storeSubMenu, setStoreSubMenu] = useState<array<string>>([]);
+    const [storeSubMenu, setStoreSubMenu] = useState<string[]>([]);
 
     const [error, setError] = useState<string>("");
 
-    const [stores, setStores] = useState([])
+    const [stores, setStores] = useState<store[]>([])
 
 
     
@@ -68,13 +95,13 @@ export default function store(props:{}) {
         console.log(data.length);
         
 
-        const dataHold:array<string> = []
-        const storesUpdateHold:array<updateMenu> = []
+        const dataHold:Array<string> = []
+        const storesUpdateHold:Array<updateMenu> = []
 
         for (let index = 0; index < data.length; index++) {
             dataHold.push("hidden")
 
-            let updateHold:UpdateMenu = {display:false, name:"", desciption:""}
+            let updateHold:updateMenu = {display:false, name:"", desciption:""}
             storesUpdateHold.push(updateHold)
             
         }
@@ -130,7 +157,7 @@ export default function store(props:{}) {
 
     const expansionButtonClick = (i:number) =>{ 
         
-        const hold:arry<String> = storeSubMenu;
+        const hold:string[] = storeSubMenu;
         
         // sub-menu is being shown
         if(storeSubMenu[i] !== "hidden"){
@@ -174,7 +201,7 @@ export default function store(props:{}) {
          * if not posible move for loop to its own function
          */
 
-        const storesUpdateHold:array<updateMenu> = []
+        const storesUpdateHold:Array<updateMenu> = []
         
         if(update[i].display === false){
             update[i].display = true
@@ -212,7 +239,7 @@ export default function store(props:{}) {
     }
 
     const cancelUpdateStore = (i:number)=>{
-        const storesUpdateHold:array<updateMenu> = []
+        const storesUpdateHold:Array<updateMenu> = []
         update[i].display = false
 
         for (let index = 0; index < update.length; index++) {
