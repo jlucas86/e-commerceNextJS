@@ -74,8 +74,8 @@ export default function Store(props:{}) {
             setError("Description is blank")
             return
         }
-
-        axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",{
+        
+        axios.post("http://localhost:8080/api/v1/store/addStore/".concat(localStorage.getItem("username")||""),{
             name: name, 
             description: description,
         }).then(() => {
@@ -87,7 +87,7 @@ export default function Store(props:{}) {
 
     const getAllStores = async () => {
         
-        const response = await axios.get("http://localhost:8080/api/v1/store/getAllStore/jimmithy")
+        const response = await axios.get("http://localhost:8080/api/v1/store/getAllStore/".concat(localStorage.getItem("username")||""))
         
         const data = await response.data
         setStores(data)
@@ -309,8 +309,6 @@ export default function Store(props:{}) {
                 + add store
             </button>
             <br />
-            <button onClick={getAllStores}>get all stores</button>
-            <button onClick={getUser}>get user</button>
             {adding == true &&
                 <div className=" ml-4">
                     <div>{error}</div>
@@ -322,6 +320,8 @@ export default function Store(props:{}) {
                     <button onClick={addStore}>Add Store</button>
                 </div>
             }
+            <button onClick={getAllStores}>get all stores</button>
+            <button onClick={getUser}>get user</button>
             <form method="get" action="http://localhost:8080/user/getUsername/jimmithy">
             
             

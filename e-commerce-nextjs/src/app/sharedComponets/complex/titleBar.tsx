@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { json } from "stream/consumers";
 
 
 export default function TitleBar(props:{AccountMenu:Function, showMenu:Function}) {
@@ -44,6 +45,22 @@ export default function TitleBar(props:{AccountMenu:Function, showMenu:Function}
             .then(response => {
                 // Handle successful registration
                 setLoginStat(response.data)
+                getUsername()
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
+
+    const getUsername = async() =>{
+        axios.get("http://localhost:8080/user/getUsername",{
+            withCredentials: true
+        })
+            .then(response => {
+                // Handle successful registration
+                localStorage.setItem('username', response.data)
+                console.log(response)
             })
             .catch(error => {
                 // Handle registration errors
