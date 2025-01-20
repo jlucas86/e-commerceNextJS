@@ -176,7 +176,7 @@ export default function user() {
                         orders
                     </div>
                     <div onClick={storeClick}>
-                        stores
+                        store
                     </div>
                     <div onClick={accountInfoClick}>
                         account info
@@ -220,7 +220,7 @@ export default function user() {
                 <div className=" bg-white w-1/2  border border-gray-400 rounded ">
                     <Orders style={orderStyle}/>
                     <div className={storeStyle}>
-                        stores
+                        <Store></Store>
                     </div>
                     <AccountInfo style={accountInfoStyle}/>
                     <PaymentMethods style={paymentMethodStyle}/>

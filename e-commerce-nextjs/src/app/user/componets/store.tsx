@@ -26,7 +26,7 @@ interface store{
     user:user
 }
 
-interface products{
+interface product{
     id:Number,
     name:String,
     type:String,
@@ -37,7 +37,7 @@ interface products{
     // orders
 }
 
-export default function store(props:{}) {
+export default function Store(props:{}) {
 
 
     const [adding, setAdding] = useState<boolean>(false)
@@ -251,16 +251,33 @@ export default function store(props:{}) {
         setUpdate(storesUpdateHold)
     }
 
-    
+    const addProduct = (p:product)=>{
 
+        axios.post("http://localhost:8080/api/v1/product/createProduct/username/store",
+            {
+                product:p,
+                withCredentials: true,
+            
+            })
+            .then(response => {
+                // Handle successful registration
+                console.log(response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            });
+    }
 
     
     return(
-        <div className=" w-screen lg:w-1/2 border-2 border-white rounded" >
+        <div className=" w-screen w-full border-2 border-white rounded" >
             <div>
                 list of stores this will be done by mapping a list got from the api
             </div>
-            {stores.map((store,i) =>
+            {
+                stores.length > 0 ? <div>
+                    {stores.map((store,i) =>
                     <div className="border-2 border-white rounded">
                         <div className=" flex  justify-between">
 
@@ -284,6 +301,10 @@ export default function store(props:{}) {
                     </div>
                     
                 )}
+                </div> :
+                <div></div>
+            }
+            
             <button onClick={() => setAdding(!adding)}>
                 + add store
             </button>
