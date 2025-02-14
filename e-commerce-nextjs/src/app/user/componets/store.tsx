@@ -115,6 +115,25 @@ export default function Store(props:{}) {
 
     }
 
+    const getStore = async (storeId:string) =>{
+        
+        axios.get("http://localhost:8080/api/v1/store/getStore/".concat(storeId),{
+            withCredentials: true
+        })
+            .then(response => {
+
+                // Handle successful find
+                
+                console.log(response)
+            })
+            .catch(error => {
+                // Handle find errors
+                console.error('Error getting store:', error);
+            });
+
+        
+    }
+
     const getUser = async () => {
         
         // const response = await axios.get('http://localhost:8080/user/getUsername/jimmithy');
@@ -123,7 +142,7 @@ export default function Store(props:{}) {
         // axios.get('http://localhost:8080/user/getUsername/jimmithy')
         
 
-        const response = await fetch("http://localhost:8080/user/getUsername/jimmithy");
+        const response = await fetch("http://localhost:8080/user/getUsername/jim");
         
         const data = await response.json()
         console.log(data);
@@ -271,15 +290,15 @@ export default function Store(props:{}) {
 
     
     return(
-        <div className=" w-screen w-full border-2 border-white rounded" >
+        <div className="  w-full border-2 border-white rounded" >
             <div>
                 list of stores this will be done by mapping a list got from the api
             </div>
             {
                 stores.length > 0 ? <div>
                     {stores.map((store,i) =>
-                    <div className="border-2 border-white rounded">
-                        <div className=" flex  justify-between">
+                    <div className="border-2 w-full border-white rounded">
+                        <div className=" flex justify-between ">
 
                             <div>
                                 {store.name}
