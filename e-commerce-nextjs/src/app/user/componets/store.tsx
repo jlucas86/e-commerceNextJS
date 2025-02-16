@@ -253,8 +253,12 @@ export default function Store(props:{}) {
         const hold = stores[i]
         hold.name = updateName
         hold.description = updateDescription
+        console.log(hold)
         
-        axios.post("http://localhost:8080/api/v1/store/addStore/jimmithy",hold).then(() => {
+        axios.post("http://localhost:8080/api/v1/store/addStore/".concat(localStorage.getItem("username")||""),
+            hold,{
+            withCredentials: true
+        }).then(() => {
             getAllStores()
           }).then(() => {
             getAllStores()
