@@ -115,21 +115,22 @@ export default function Store(props:{}) {
 
     }
 
-    const getStore = async (storeId:string) =>{
+    const getStore = async (storeId:number) =>{
         
-        axios.get("http://localhost:8080/api/v1/store/getStore/".concat(storeId),{
+        const response = await axios.get("http://localhost:8080/api/v1/store/getStore/".concat(storeId.toString()),{
             withCredentials: true
         })
-            .then(response => {
+        console.log(response)
+            // .then(response => {
 
-                // Handle successful find
+            //     // Handle successful find
                 
-                console.log(response)
-            })
-            .catch(error => {
-                // Handle find errors
-                console.error('Error getting store:', error);
-            });
+            //     console.log(response)
+            // })
+            // .catch(error => {
+            //     // Handle find errors
+            //     console.error('Error getting store:', error);
+            // });
 
         
     }
@@ -342,10 +343,10 @@ export default function Store(props:{}) {
             <button onClick={getAllStores}>get all stores</button>
             <button onClick={getUser}>get user</button>
             <form method="get" action="http://localhost:8080/user/getUsername/jimmithy">
-            
-            
             <button  type="submit">getuserJ</button>
           </form>
+          <br />
+          <button onClick={() => getStore(1)}>getStore by id 1</button>
         </div>
     );
 }
