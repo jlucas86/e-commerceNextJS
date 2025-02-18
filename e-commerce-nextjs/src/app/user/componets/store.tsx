@@ -125,33 +125,21 @@ export default function Store(props:{}) {
 
     }
 
-    const getStore = async (storeId:Number):Promise<store> =>{
+    const getStore = async (storeId:Number) =>{
 
-        
-        
         axios.get("http://localhost:8080/api/v1/store/getStore/".concat(storeId.toString()),{
             withCredentials: true
         })
             .then(response => {
                 // Handle successful find
                 console.log(response)
-                return(response.data)
             })
             .catch(error => {
                 // Handle find errors
                 console.error('Error getting store:', error);
                 // throw new Error("some thing went wrong when getting store")
+                
             });
-            
-        let s:store = {
-            id: 0,
-            name: "undefined",
-            description: "undefined",
-            user: undefined
-        }
-
-        return s
-            
         
     }
 
@@ -278,7 +266,7 @@ export default function Store(props:{}) {
         hold.description = updateDescription
         console.log(hold)
         
-        axios.post("http://localhost:8080/api/v1/store/updateStore/".concat(localStorage.getItem("username")||""),
+        axios.put("http://localhost:8080/api/v1/store/updateStore/".concat(localStorage.getItem("username")||""),
             hold,{
             withCredentials: true
         }).then(() => {
@@ -305,12 +293,28 @@ export default function Store(props:{}) {
      * product functions
      */
 
+    const addProductHelper = async (sId:Number) =>{
+        axios.get("http://localhost:8080/api/v1/store/getStore/".concat(sId.toString()),{
+            withCredentials: true
+        })
+            .then(response => {
+                // Handle successful find
+                console.log(response)
+                addProduct(response.data)
+            })
+            .catch(error => {
+                // Handle find errors
+                console.error('Error getting store:', error);
+                // throw new Error("some thing went wrong when getting store")
+                
+            });
+    }
 
-    const addProduct = async (sId:Number)=>{
+    const addProduct = async (s:store)=>{
 
-        const s:store = await getStore(sId) 
+        console.log(s)
 
-        axios.post("http://localhost:8080/api/v1/product/createProduct/".concat(localStorage.getItem("username")||"", "/", sId.toString()),{
+        axios.post("http://localhost:8080/api/v1/product/createProduct/".concat(localStorage.getItem("username")||"", "/", s.id.toString()),{
                 name:productName,
                 type:productType,
                 description:productDescription,
@@ -334,24 +338,26 @@ export default function Store(props:{}) {
         axios.get("http://localhost:8080/api/v1/product/getProduct/".concat(id.toString()),{
             withCredentials:true,
         })
-            .then(response =>{
+            .then(response => {
                 console.log(response)
             })
             .catch(error =>{
                 console.error(error);
                 
-            })
+            });
+
+            
     }
 
     
     return(
-        <div className="  w-full border-2 border-white rounded" >
+        <div className=" w-full border-2 border-white rounded" >
             <div>
                 list of stores this will be done by mapping a list got from the api
             </div>
             {
            stores.length > 0 ? <div>
-                    {/* {stores.map((store,i) =>
+                    {stores.map((store,i) =>
                     <div className="border-2 w-full border-white rounded">
                         <div className=" flex justify-between ">
 
@@ -374,8 +380,8 @@ export default function Store(props:{}) {
                         
                     </div>
                     
-                )} */}
-                {stores.length}
+                )} 
+                
                 </div> :
                 <div></div>
             }
@@ -406,15 +412,15 @@ export default function Store(props:{}) {
           <div className="">
                 <input type="text" name="" id="" placeholder="Name"  onChange={ e =>setProductName(e.target.value)}/>
                 <br />
-                <input type="text" name="" id="" placeholder="Type"  onChange={ e =>setProductName(e.target.value)}/>
+                <input type="text" name="" id="" placeholder="Type"  onChange={ e =>setProductType(e.target.value)}/>
                 <br />
-                <input type="text" name="" id="" placeholder="Description"  onChange={ e =>setProductName(e.target.value)}/>
+                <input type="text" name="" id="" placeholder="Description"  onChange={ e =>setProductDescription(e.target.value)}/>
                 <br />
-                <input type="number" name="" id="" placeholder=""  onChange={ e =>setProductName(e.target.value)}/>
+                <input type="number" name="" id="" placeholder=""  onChange={ e =>setProductPrice(Number(e.target.value))}/>
           </div>
-          <button onClick={() =>addProduct(1)}>add product 1 </button>
+          <button onClick={() =>addProductHelper(1)}>add product 1 </button>
           <br />
-          <button onClick={() =>getProduct(1)}>get product 1</button>
+          <button onClick={() =>getProduct(4)}>get product 1</button>
         </div>
     );
 
