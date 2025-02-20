@@ -52,3 +52,15 @@ p {
 input:focus {
   outline :none;
 }
+
+input[type=text] {
+  border-width: 2px;
+  border-color: grey;
+  border-radius: 6px;
+}
+
+input[type=number] {
+  border-width: 2px;
+  border-color: grey;
+  border-radius: 6px;
+}

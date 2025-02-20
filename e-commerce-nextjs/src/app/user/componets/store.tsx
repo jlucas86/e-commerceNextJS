@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react";
+import AddProductMenu from "./store_componets/addProductMenu";
 
 import axios from "axios";
 
@@ -421,6 +422,13 @@ export default function Store(props:{}) {
           <button onClick={() =>addProductHelper(1)}>add product 1 </button>
           <br />
           <button onClick={() =>getProduct(4)}>get product 1</button>
+
+            <br />
+            
+            <div>
+                <AddProductMenu />
+            </div>  
+            
         </div>
     );
 
