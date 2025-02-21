@@ -426,7 +426,7 @@ export default function Store(props:{}) {
             <br />
             
             <div>
-                <AddProductMenu />
+                <AddProductMenu storeId={1}/>
             </div>  
             
         </div>
