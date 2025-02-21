@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import AddProductMenu from "./store_componets/addProductMenu";
 
 import axios from "axios";
+import StoreEntity from "./store_componets/storeEntity";
 
 interface updateMenu{
     display:boolean,
@@ -426,7 +427,7 @@ export default function Store(props:{}) {
             <br />
             
             <div>
-                <AddProductMenu storeId={1}/>
+                <StoreEntity storeId={1} />
             </div>  
             
         </div>

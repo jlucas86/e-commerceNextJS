@@ -12,7 +12,6 @@ export default function AddProductMenu(props:{storeId:Number,}){
     const [productType, setProductType] = useState<String>("")
     const [productDescription, setProductDescription] = useState<String>("")
     const [productPrice, setProductPrice] = useState<Number>(0)
-    const [productStore, setProductStore] = useState<store>()
 
     const addProductButtonClick = () =>{
         if(pMenuStyle == "hidden"){
