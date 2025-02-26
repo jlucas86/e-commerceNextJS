@@ -64,3 +64,9 @@ input[type=number] {
   border-color: grey;
   border-radius: 6px;
 }
+
+input[type=password] {
+  border-width: 2px;
+  border-color: grey;
+  border-radius: 6px;
+}

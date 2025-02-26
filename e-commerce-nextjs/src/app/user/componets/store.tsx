@@ -12,32 +12,32 @@ interface updateMenu{
     desciption:string
 }
 
-interface user{
-    id:Number,
-    email:String,
-    username:String,
-    password:String,
-    // roles
-    // stores
-}
+// interface user{
+//     id:Number,
+//     email:String,
+//     username:String,
+//     password:String,
+//     // roles
+//     // stores
+// }
 
-interface store{
-    id:Number,
-    name:String,
-    description:String,
-    user:user|undefined
-}
+// interface store{
+//     id:Number,
+//     name:String,
+//     description:String,
+//     user:user|undefined
+// }
 
-interface product{
-    id:Number,
-    name:String,
-    type:String,
-    description:String,
-    price:Number,
-    store:store,
-    // carts
-    // orders
-}
+// interface product{
+//     id:Number,
+//     name:String,
+//     type:String,
+//     description:String,
+//     price:Number,
+//     store:store,
+//     // carts
+//     // orders
+// }
 
 export default function Store(props:{}) {
 
@@ -358,7 +358,7 @@ export default function Store(props:{}) {
                 list of stores this will be done by mapping a list got from the api
             </div>
             {
-           stores.length > 0 ? <div>
+                stores.length > 0 ? <div>
                     {stores.map((store,i) =>
                     <div className="border-2 w-full border-white rounded">
                         <div className=" flex justify-between ">
@@ -368,9 +368,6 @@ export default function Store(props:{}) {
                             </div>
                             <div>
                                 {expansionButton(i)}
-
-
-                                
                                 <button onClick={() =>deleteStore(i)} className=" border-2 border-red-700 rounded" > Delete</button>
                             </div>
                         </div>
