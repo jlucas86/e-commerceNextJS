@@ -11,22 +11,28 @@ export default function StoreEntity(props:{storeId:Number}) {
     // componet needs rerendered
     const [productChange, setProductChange] = useState<Boolean>(false)
 
+    const [productIdList, setProductIdList] = useState<Array<Number>>([])
+
 
 
     useEffect(()=>{
         // get a new list of products form the data base because a new one was added
     }, [productChange])
 
-    // menu 
+    // menu  html and css
     const StoreMenu = () =>{
         return(
-            <div>
-                <div className=" border-2 rounded">
-                    <h3> store name</h3>
-                    <p>desciption</p>
-                    list of products
-                    <Product productId={1}/>
-                </div>
+            <div className=" border-2 rounded">
+                <h3> store name</h3>
+                <p>desciption</p>
+
+                {/* scrole window for products */}
+                {productIdList.length>0 ?
+                    <div className=" border-2 rounded">
+                        {productIdList.map((p,i)=>
+                            <Product productId={p} />
+                        )}
+                    </div>:<div></div>}
                 <AddProductMenu storeId={props.storeId} />
                 <button onClick={()=>{setShowMenu(false)}}> hide menu</button>
             </div>
@@ -35,17 +41,14 @@ export default function StoreEntity(props:{storeId:Number}) {
     
     return(
         <div>
-            {showMenu? <div>
-                    <div>
-                        <StoreMenu />
-                    </div>
+            {showMenu? 
+                <div>
+                    <StoreMenu />  
                 </div>:<div>
-                    <div onClick={()=>{setShowMenu(true)}}>
+                    <div onClick={()=>{setShowMenu(true)}} className=" border-2 rounded">
                         store name
                     </div>     
-                </div>}
-            
-            
+                </div>}   
         </div>
     );
 }
