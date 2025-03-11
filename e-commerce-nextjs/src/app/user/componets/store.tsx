@@ -134,7 +134,7 @@ export default function Store(props:{}) {
         })
             .then(response => {
                 // Handle successful find
-                console.log(response)
+                console.log( "value i want", response)
             })
             .catch(error => {
                 // Handle find errors
