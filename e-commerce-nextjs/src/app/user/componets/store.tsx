@@ -5,6 +5,7 @@ import AddProductMenu from "./store_componets/addProductMenu";
 
 import axios from "axios";
 import StoreEntity from "./store_componets/storeEntity";
+import { getProduct } from "@/app/api/product/productApiCall";
 
 interface updateMenu{
     display:boolean,
@@ -336,20 +337,20 @@ export default function Store(props:{}) {
             });
     }
 
-    const getProduct = async (id:number) =>{
-        axios.get("http://localhost:8080/api/v1/product/getProduct/".concat(id.toString()),{
-            withCredentials:true,
-        })
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error =>{
-                console.error(error);
+    // const getProduct = async (id:number) =>{
+    //     axios.get("http://localhost:8080/api/v1/product/getProduct/".concat(id.toString()),{
+    //         withCredentials:true,
+    //     })
+    //         .then(response => {
+    //             console.log(response)
+    //         })
+    //         .catch(error =>{
+    //             console.error(error);
                 
-            });
+    //         });
 
             
-    }
+    // }
 
     
     return(
@@ -419,7 +420,7 @@ export default function Store(props:{}) {
           </div>
           <button onClick={() =>addProductHelper(1)}>add product 1 </button>
           <br />
-          <button onClick={() =>getProduct(4)}>get product 1</button>
+          <button onClick={() =>getProduct(1)}>get product 1</button>
 
             <br />
             

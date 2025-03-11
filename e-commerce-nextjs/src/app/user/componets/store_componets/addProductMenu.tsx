@@ -1,3 +1,4 @@
+import { addProduct } from "@/app/api/product/productApiCall";
 import axios from "axios";
 import { useState } from "react";
 
@@ -26,46 +27,46 @@ export default function AddProductMenu(props:{storeId:Number,}){
      * functions for api calls regarding products
      */
 
-    const addProduct = async (sId:Number) =>{
-        axios.get("http://localhost:8080/api/v1/store/getStore/".concat(sId.toString()),{
-            withCredentials: true
-        })
-            .then(response => {
-                // Handle successful find
-                console.log(response)
-                addProductHelper(response.data)
-            })
-            .catch(error => {
-                // Handle find errors
-                console.error('Error getting store:', error);
-                // throw new Error("some thing went wrong when getting store")
+    // const addProduct = async (sId:Number) =>{
+    //     axios.get("http://localhost:8080/api/v1/store/getStore/".concat(sId.toString()),{
+    //         withCredentials: true
+    //     })
+    //         .then(response => {
+    //             // Handle successful find
+    //             console.log(response)
+    //             addProductHelper(response.data)
+    //         })
+    //         .catch(error => {
+    //             // Handle find errors
+    //             console.error('Error getting store:', error);
+    //             // throw new Error("some thing went wrong when getting store")
                 
-            });
-    }
+    //         });
+    // }
 
-    const addProductHelper = async (s:store)=>{
+    // const addProductHelper = async (s:store)=>{
 
-        console.log(s)
+    //     console.log(s)
 
-        axios.post("http://localhost:8080/api/v1/product/createProduct/".concat(localStorage.getItem("username")||"", "/", s.id.toString()),{
-                name:productName,
-                type:productType,
-                description:productDescription,
-                price:productPrice,
-                store: s
-            },
-            {
-                withCredentials: true,
-            })
-            .then(response => {
-                // Handle successful registration
-                console.log(response.data);
-            })
-            .catch(error => {
-                // Handle registration errors
-                console.error('Error registering user:', error);
-            });
-    }
+    //     axios.post("http://localhost:8080/api/v1/product/createProduct/".concat(localStorage.getItem("username")||"", "/", s.id.toString()),{
+    //             name:productName,
+    //             type:productType,
+    //             description:productDescription,
+    //             price:productPrice,
+    //             store: s
+    //         },
+    //         {
+    //             withCredentials: true,
+    //         })
+    //         .then(response => {
+    //             // Handle successful registration
+    //             console.log(response.data);
+    //         })
+    //         .catch(error => {
+    //             // Handle registration errors
+    //             console.error('Error registering user:', error);
+    //         });
+    // }
 
     return(
         <div className="">
@@ -79,7 +80,7 @@ export default function AddProductMenu(props:{storeId:Number,}){
                     <br />
                     <input type="text" name="" id="" placeholder="desciption" onChange={ e =>setProductDescription(e.target.value)}/>
                     <br />
-                    <button onClick={() =>addProduct(props.storeId)}> add </button>
+                    <button onClick={() =>addProduct(props.storeId, productName,productType, productDescription, productPrice)}> add </button>
                 </div>
         </div>
     );
