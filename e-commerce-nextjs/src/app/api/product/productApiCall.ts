@@ -53,3 +53,15 @@ export const getProduct = async (id:number) =>{
             
         });     
 }
+
+export const deleteProduct = async (sId:number, pId:number) =>{
+    axios.delete("http://localhost:8080/api/v1/product/deleteProduct/".concat(localStorage.getItem("username")||"","/",sId.toString(),"/",pId.toString()),
+    {withCredentials: true})
+        .then(() => {
+            console.log("no error")
+          })
+          .catch(error => {
+                // Handle find errors
+                console.error('Error deleting store:', error);
+            });
+}

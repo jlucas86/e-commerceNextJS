@@ -5,7 +5,7 @@ import AddProductMenu from "./store_componets/addProductMenu";
 
 import axios from "axios";
 import StoreEntity from "./store_componets/storeEntity";
-import { getProduct } from "@/app/api/product/productApiCall";
+import { addProduct, getProduct } from "@/app/api/product/productApiCall";
 
 interface updateMenu{
     display:boolean,
@@ -296,46 +296,46 @@ export default function Store(props:{}) {
      * product functions
      */
 
-    const addProductHelper = async (sId:Number) =>{
-        axios.get("http://localhost:8080/api/v1/store/getStore/".concat(sId.toString()),{
-            withCredentials: true
-        })
-            .then(response => {
-                // Handle successful find
-                console.log(response)
-                addProduct(response.data)
-            })
-            .catch(error => {
-                // Handle find errors
-                console.error('Error getting store:', error);
-                // throw new Error("some thing went wrong when getting store")
+    // const addProductHelper = async (sId:Number) =>{
+    //     axios.get("http://localhost:8080/api/v1/store/getStore/".concat(sId.toString()),{
+    //         withCredentials: true
+    //     })
+    //         .then(response => {
+    //             // Handle successful find
+    //             console.log(response)
+    //             addProduct(response.data)
+    //         })
+    //         .catch(error => {
+    //             // Handle find errors
+    //             console.error('Error getting store:', error);
+    //             // throw new Error("some thing went wrong when getting store")
                 
-            });
-    }
+    //         });
+    // }
 
-    const addProduct = async (s:store)=>{
+    // const addProduct = async (s:store)=>{
 
-        console.log(s)
+    //     console.log(s)
 
-        axios.post("http://localhost:8080/api/v1/product/createProduct/".concat(localStorage.getItem("username")||"", "/", s.id.toString()),{
-                name:productName,
-                type:productType,
-                description:productDescription,
-                price:productPrice,
-                store: s
-            },
-            {
-                withCredentials: true,
-            })
-            .then(response => {
-                // Handle successful registration
-                console.log(response.data);
-            })
-            .catch(error => {
-                // Handle registration errors
-                console.error('Error registering user:', error);
-            });
-    }
+    //     axios.post("http://localhost:8080/api/v1/product/createProduct/".concat(localStorage.getItem("username")||"", "/", s.id.toString()),{
+    //             name:productName,
+    //             type:productType,
+    //             description:productDescription,
+    //             price:productPrice,
+    //             store: s
+    //         },
+    //         {
+    //             withCredentials: true,
+    //         })
+    //         .then(response => {
+    //             // Handle successful registration
+    //             console.log(response.data);
+    //         })
+    //         .catch(error => {
+    //             // Handle registration errors
+    //             console.error('Error registering user:', error);
+    //         });
+    // }
 
     // const getProduct = async (id:number) =>{
     //     axios.get("http://localhost:8080/api/v1/product/getProduct/".concat(id.toString()),{
@@ -418,9 +418,9 @@ export default function Store(props:{}) {
                 <br />
                 <input type="number" name="" id="" placeholder=""  onChange={ e =>setProductPrice(Number(e.target.value))}/>
           </div>
-          <button onClick={() =>addProductHelper(1)}>add product 1 </button>
+          <button onClick={() => addProduct(1, productName, productType, productDescription, productPrice)}>add product 1 </button>
           <br />
-          <button onClick={() =>getProduct(1)}>get product 1</button>
+          <button onClick={() =>getProduct(3)}>get product 1</button>
 
             <br />
             
