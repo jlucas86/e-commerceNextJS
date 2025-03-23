@@ -1,4 +1,5 @@
 import axios from "axios";
+import { pid } from "process";
 
 export const addProduct = async (sId:Number, pName:String, pType:String, pDescription:String, pPrice:Number) =>{
     axios.get("http://localhost:8080/api/v1/store/getStore/".concat(sId.toString()),{
@@ -55,6 +56,7 @@ export const getProduct = async (id:number) =>{
 }
 
 export const deleteProduct = async (sId:number, pId:number) =>{
+    console.log((localStorage.getItem("username")||"").concat(", ", sId.toString(), ", ", pId.toString()))
     axios.delete("http://localhost:8080/api/v1/product/deleteProduct/".concat(localStorage.getItem("username")||"","/",sId.toString(),"/",pId.toString()),
     {withCredentials: true})
         .then(() => {
@@ -62,6 +64,6 @@ export const deleteProduct = async (sId:number, pId:number) =>{
           })
           .catch(error => {
                 // Handle find errors
-                console.error('Error deleting store:', error);
+                console.error('Error deleting product:', error);
             });
 }

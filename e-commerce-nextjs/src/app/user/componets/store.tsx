@@ -5,7 +5,7 @@ import AddProductMenu from "./store_componets/addProductMenu";
 
 import axios from "axios";
 import StoreEntity from "./store_componets/storeEntity";
-import { addProduct, getProduct } from "@/app/api/product/productApiCall";
+import { addProduct, deleteProduct, getProduct } from "@/app/api/product/productApiCall";
 
 interface updateMenu{
     display:boolean,
@@ -420,7 +420,9 @@ export default function Store(props:{}) {
           </div>
           <button onClick={() => addProduct(1, productName, productType, productDescription, productPrice)}>add product 1 </button>
           <br />
-          <button onClick={() =>getProduct(3)}>get product 1</button>
+          <button onClick={() =>getProduct(1)}>get product 1</button>
+          <br />
+          <button onClick={()=>deleteProduct(1,1)}> delete product</button>
 
             <br />
             

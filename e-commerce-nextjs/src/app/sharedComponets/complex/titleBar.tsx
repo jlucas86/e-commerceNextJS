@@ -61,6 +61,7 @@ export default function TitleBar(props:{AccountMenu:Function, showMenu:Function}
                 // Handle successful registration
                 localStorage.setItem('username', response.data)
                 console.log(response)
+                console.log(response.data)
             })
             .catch(error => {
                 // Handle registration errors
