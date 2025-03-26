@@ -6,6 +6,7 @@ import AddProductMenu from "./store_componets/addProductMenu";
 import axios from "axios";
 import StoreEntity from "./store_componets/storeEntity";
 import { addProduct, deleteProduct, getProduct } from "@/app/api/product/productApiCall";
+import UpdateProductMenu from "./store_componets/updateProductMenu";
 
 interface updateMenu{
     display:boolean,
@@ -70,6 +71,7 @@ export default function Store(props:{}) {
     const [productDescription, setProductDescription] = useState<String>("")
     const [productPrice, setProductPrice] = useState<Number>(0)
     const [productStore, setProductStore] = useState<store>()
+    const [productP, setProductP] = useState<product>()
 
 
     
@@ -352,6 +354,12 @@ export default function Store(props:{}) {
             
     // }
 
+    const getProductHelper = async(pId:number) =>{
+        let p = await getProduct(pId) 
+        console.log("prodcut val :", p)
+        if (p.id !== 0) setProductP(p)
+    }
+
     
     return(
         <div className=" w-full border-2 border-white rounded" >
@@ -420,9 +428,14 @@ export default function Store(props:{}) {
           </div>
           <button onClick={() => addProduct(1, productName, productType, productDescription, productPrice)}>add product 1 </button>
           <br />
-          <button onClick={() =>getProduct(1)}>get product 1</button>
+          <button onClick={() =>{getProductHelper(1)}}>get product 1</button>
           <br />
           <button onClick={()=>deleteProduct(1,1)}> delete product</button>
+          <br />
+          {productP? <div>
+                <UpdateProductMenu p={productP} />
+          </div>: <div> product is not defined</div> }
+          
 
             <br />
             

@@ -16,11 +16,11 @@ interface store{
 
 interface product{
     id:Number,
-    name:String,
-    type:String,
-    description:String,
+    name:string,
+    type:string,
+    description:string,
     price:Number,
-    store:store,
+    store:store| undefined,
     // carts
     // orders
 }

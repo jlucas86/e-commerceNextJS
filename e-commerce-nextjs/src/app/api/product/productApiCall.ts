@@ -1,3 +1,5 @@
+
+import product from "@/app/product/page";
 import axios from "axios";
 import { pid } from "process";
 
@@ -42,17 +44,39 @@ const addProductHelper = async (s:store, pName:String, pType:String, pDescriptio
         });
 }
 
+
+
 export const getProduct = async (id:number) =>{
-    axios.get("http://localhost:8080/api/v1/product/getProduct/".concat(id.toString()),{
+    let p:product = {id:0, name:"", type:"", description:"", price:0, store: undefined}
+    let response = await axios.get("http://localhost:8080/api/v1/product/getProduct/".concat(id.toString()),{
         withCredentials:true,
     })
         .then(response => {
             console.log(response)
+            return response.data
         })
         .catch(error =>{
             console.error(error);
-            
-        });     
+        });
+    console.log("do thing",response)
+    
+    return response
+    
+    
+}
+
+export const updateProduct = async (sId:number, p:product) => {    
+    
+    axios.put("http://localhost:8080/api/v1/product/deleteProduct/".concat(localStorage.getItem("username")||"","/",p.store ? p.store.id.toString():""),
+        p,{
+        withCredentials: true
+    }).then(() => {
+        console.log("product updated")
+      })
+      .catch(error =>{
+        console.error(error);
+        
+    });
 }
 
 export const deleteProduct = async (sId:number, pId:number) =>{
