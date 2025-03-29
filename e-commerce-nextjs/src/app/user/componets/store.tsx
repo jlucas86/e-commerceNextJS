@@ -355,7 +355,7 @@ export default function Store(props:{}) {
     // }
 
     const getProductHelper = async(pId:number) =>{
-        let p = await getProduct(pId) 
+        let p:product = await getProduct(pId) 
         console.log("prodcut val :", p)
         if (p.id !== 0) setProductP(p)
     }
@@ -433,7 +433,7 @@ export default function Store(props:{}) {
           <button onClick={()=>deleteProduct(1,1)}> delete product</button>
           <br />
           {productP? <div>
-                <UpdateProductMenu p={productP} />
+                <UpdateProductMenu sId={1} p={productP} />
           </div>: <div> product is not defined</div> }
           
 

@@ -8,14 +8,14 @@ interface user{
 }
 
 interface store{
-    id:Number,
+    id:number,
     name:String,
     description:String,
     user:user|undefined
 }
 
 interface product{
-    id:Number,
+    id:number,
     name:string,
     type:string,
     description:string,
