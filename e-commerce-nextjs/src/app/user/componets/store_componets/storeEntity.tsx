@@ -31,6 +31,7 @@ export default function StoreEntity(props:{storeId:Number}) {
         if(s.name !== ""){
             setStoreVal(s)
         }
+        console.log("store in function being teseted",s)
     }
 
     // get store info form id
