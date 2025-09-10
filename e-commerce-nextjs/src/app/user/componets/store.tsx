@@ -428,9 +428,9 @@ export default function Store(props:{}) {
           </div>
           <button onClick={() => addProduct(1, productName, productType, productDescription, productPrice)}>add product 1 </button>
           <br />
-          <button onClick={() =>{getProductHelper(1)}}>get product 1</button>
+          <button onClick={() =>{getProductHelper(3)}}>get product 1</button>
           <br />
-          <button onClick={()=>deleteProduct(1,1)}> delete product</button>
+          <button onClick={()=>deleteProduct(1,3)}> delete product</button>
           <br />
           {productP? <div>
                 <UpdateProductMenu sId={1} p={productP} />

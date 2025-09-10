@@ -75,6 +75,38 @@ export default function newUser() {
             });  
     }
 
+    const initUsers = async () =>{
+        axios.get("http://localhost:8080/api/v1/role/getRole/3",{
+            withCredentials: true
+        })
+            .then(response => {
+                userRoles.push(response.data)
+                 
+                // add jim
+                initUsersHelper("jim@gmail.com", "jim")
+                // add bob
+                initUsersHelper("bob@gmail.com", "bob")
+                // add tom
+                initUsersHelper("tom@gmail.com", "tom")
+            });
+
+
+    }
+
+    const initUsersHelper = async (emailHold:string, usernameHold:string)  =>{
+        let roles = userRoles
+
+        axios.post("http://localhost:8080/user/addUser", {email:emailHold, username:usernameHold, password:"password", seller, roles})
+            .then(response => {
+                // Handle successful registration
+                console.log('User registered successfully:', response.data);
+            })
+            .catch(error => {
+                // Handle registration errors
+                console.error('Error registering user:', error);
+            }); 
+    }
+
     
     return (
         <div className=" w-screen h-screen flex flex-col items-center justify-center border-2 border-white radious ">
@@ -93,7 +125,8 @@ export default function newUser() {
                     <input type="checkbox" name="seller" id="seller" defaultChecked={seller} onChange={e => {setSeller(!seller); console.log(seller);
                     }} />
                 </div>
-                <button onClick={addNewUser}>Submit</button>         
+                <button onClick={addNewUser}>Submit</button>  
+                <button onClick={initUsers}> init users</button>      
 
             <p>Already have an account? <a href="http://localhost:3000/login">Sign in here</a>.</p>
         </div>

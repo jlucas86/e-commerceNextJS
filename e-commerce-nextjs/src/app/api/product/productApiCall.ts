@@ -65,8 +65,8 @@ export const getProduct = async (id:number) =>{
     
 }
 
-export const updateProduct = async (sId:number, p:product) => {    
-    
+export const updateProduct = async (sId:number, p:product) => {  
+
     axios.put("http://localhost:8080/api/v1/product/updateProduct/".concat(localStorage.getItem("username")||"","/",sId.toString()),
         p,{
         withCredentials: true
