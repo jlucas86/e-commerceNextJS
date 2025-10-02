@@ -61,9 +61,50 @@ export const getProduct = async (id:number) =>{
     console.log("do thing",response)
     
     return response
-    
-    
+     
 }
+
+export const getProductsPage = async(page:number, size:number, sortBy:String, ascending:Boolean, types:Array<string>) =>{
+        // let types = ["car","bus"]
+        console.log(types.join(","))
+
+        let response = await axios.get("http://localhost:8080/api/v1/product/getProducts",{
+            params:{
+                page:page,
+                size:size,
+                sortBy: sortBy,
+                ascending: ascending,
+                type:types.join(",")
+            },
+            withCredentials:true,
+    })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error =>{
+            console.error(error);
+        });
+    }
+
+    export const getStoreProduct = async(sId:number, page:number, size:number, sortBy:String, ascending:Boolean) =>{
+        
+        let response = await axios.get("http://localhost:8080/api/v1/product/getStoreProducts",{
+            params:{
+                page:page,
+                size:size,
+                sortBy: sortBy,
+                ascending: ascending,
+                storeId:sId
+            },
+            withCredentials:true,
+    })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error =>{
+            console.error(error);
+        });
+    }
 
 export const updateProduct = async (sId:number, p:product) => {  
 

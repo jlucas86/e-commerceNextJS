@@ -5,8 +5,9 @@ import AddProductMenu from "./store_componets/addProductMenu";
 
 import axios from "axios";
 import StoreEntity from "./store_componets/storeEntity";
-import { addProduct, deleteProduct, getProduct } from "@/app/api/product/productApiCall";
+import { addProduct, deleteProduct, getProduct, getProductsPage, getStoreProduct } from "@/app/api/product/productApiCall";
 import UpdateProductMenu from "./store_componets/updateProductMenu";
+import { serialize } from "v8";
 
 interface updateMenu{
     display:boolean,
@@ -150,10 +151,10 @@ export default function Store(props:{}) {
 
     const getUser = async () => {
         
-        // const response = await axios.get('http://localhost:8080/user/getUsername/jimmithy');
+        // const response = await axios.get('http://localhost:8080/user/getUsername/jim');
         // console.log(response);
 
-        // axios.get('http://localhost:8080/user/getUsername/jimmithy')
+        // axios.get('http://localhost:8080/user/getUsername/jim')
         
 
         const response = await fetch("http://localhost:8080/user/getUsername/jim");
@@ -411,7 +412,7 @@ export default function Store(props:{}) {
             }
             <button onClick={getAllStores}>get all stores</button>
             <button onClick={getUser}>get user</button>
-            <form method="get" action="http://localhost:8080/user/getUsername/jimmithy">
+            <form method="get" action="http://localhost:8080/user/getUsername/jim">
             <button  type="submit">getuserJ</button>
           </form>
           <br />
@@ -431,6 +432,10 @@ export default function Store(props:{}) {
           <button onClick={() =>{getProductHelper(3)}}>get product 1</button>
           <br />
           <button onClick={()=>deleteProduct(1,3)}> delete product</button>
+          <br />
+          <button onClick={() =>{getProductsPage(0, 10, "id", true, ["car","bus"])}}> get products page</button>
+          <br />
+          <button onClick={() =>{getStoreProduct(1, 0, 10, "id", true)}}> get stores products page</button>
           <br />
           {productP? <div>
                 <UpdateProductMenu sId={1} p={productP} />

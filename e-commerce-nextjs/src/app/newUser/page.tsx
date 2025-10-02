@@ -11,6 +11,8 @@ export default function newUser() {
     const [password, setPassword] = useState<string>("")
     const [confermPassword, setConfermPassword] = useState<string>("")
     const [seller, setSeller] = useState<boolean>(false)
+
+    const [users, setUsers] = useState<JSON>()
     
     let userRoles:any[] = []
 
@@ -51,6 +53,15 @@ export default function newUser() {
             .then(response => {
                 userRoles.push(response.data)
                 getCustomerRole()
+            });     
+    }
+
+    const getAllUsers = async () => {     
+        axios.get("http://localhost:8080/user/getAllUsers?pageNo=0&pageSize=1&name=bob",{
+            withCredentials: true
+        })
+            .then(response => {
+                console.log(response.data)
             });     
     }
 
@@ -126,7 +137,9 @@ export default function newUser() {
                     }} />
                 </div>
                 <button onClick={addNewUser}>Submit</button>  
-                <button onClick={initUsers}> init users</button>      
+                <button onClick={initUsers}> init users</button>    
+                <button onClick={getAllUsers}> get all users</button>  
+
 
             <p>Already have an account? <a href="http://localhost:3000/login">Sign in here</a>.</p>
         </div>
