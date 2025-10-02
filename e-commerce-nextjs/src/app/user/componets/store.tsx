@@ -5,7 +5,7 @@ import AddProductMenu from "./store_componets/addProductMenu";
 
 import axios from "axios";
 import StoreEntity from "./store_componets/storeEntity";
-import { addProduct, deleteProduct, getProduct, getProductsPage, getStoreProduct } from "@/app/api/product/productApiCall";
+import { addProduct, deleteProduct, getProduct, getProductsPage, getStoreProduct, getStoreProductsByType } from "@/app/api/product/productApiCall";
 import UpdateProductMenu from "./store_componets/updateProductMenu";
 import { serialize } from "v8";
 
@@ -436,6 +436,8 @@ export default function Store(props:{}) {
           <button onClick={() =>{getProductsPage(0, 10, "id", true, ["car","bus"])}}> get products page</button>
           <br />
           <button onClick={() =>{getStoreProduct(1, 0, 10, "id", true)}}> get stores products page</button>
+          <br />
+          <button onClick={() =>{getStoreProductsByType(1, 0, 10, "id", true,["bus"])}}> get stores products page by type</button>
           <br />
           {productP? <div>
                 <UpdateProductMenu sId={1} p={productP} />

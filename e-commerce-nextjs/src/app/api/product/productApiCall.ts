@@ -106,6 +106,27 @@ export const getProductsPage = async(page:number, size:number, sortBy:String, as
         });
     }
 
+    export const getStoreProductsByType = async(sId:number, page:number, size:number, sortBy:String, ascending:Boolean, types:Array<string>) =>{
+        
+        let response = await axios.get("http://localhost:8080/api/v1/product/getStoreProductsByType",{
+            params:{
+                page:page,
+                size:size,
+                sortBy: sortBy,
+                ascending: ascending,
+                storeId:sId,
+                type:types.join(",")
+            },
+            withCredentials:true,
+    })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error =>{
+            console.error(error);
+        });
+    }
+
 export const updateProduct = async (sId:number, p:product) => {  
 
     axios.put("http://localhost:8080/api/v1/product/updateProduct/".concat(localStorage.getItem("username")||"","/",sId.toString()),
