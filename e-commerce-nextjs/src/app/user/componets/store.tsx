@@ -447,7 +447,18 @@ export default function Store(props:{}) {
             <br />
             
             <div>
-                <StoreEntity storeId={1} />
+                {
+                stores.length > 0 ? <div>
+                    {stores.map((store,i) =>
+                    <div >   
+                        <StoreEntity storeId={store.id}/>        
+                    </div>
+                    
+                )} 
+                
+                </div> :
+                <div></div>
+            }
             </div>  
             
         </div>

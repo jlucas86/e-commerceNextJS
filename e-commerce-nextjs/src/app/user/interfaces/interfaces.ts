@@ -19,8 +19,21 @@ interface product{
     name:string,
     type:string,
     description:string,
-    price:Number,
+    price:number,
     store:store| undefined,
     // carts
     // orders
 }
+
+interface productPage{
+        products:Array<product>,
+        empty:boolean,
+        first:boolean,
+        last:boolean,
+        pageNumber:number,
+        size:number,
+        numberOfElementsPerPage:number,
+        totalElements:number,
+        totalPages:number,
+        
+    }

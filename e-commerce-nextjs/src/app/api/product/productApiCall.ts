@@ -1,6 +1,6 @@
 
 import product from "@/app/product/page";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { pid } from "process";
 
 export const addProduct = async (sId:Number, pName:String, pType:String, pDescription:String, pPrice:Number) =>{
@@ -80,11 +80,34 @@ export const getProductsPage = async(page:number, size:number, sortBy:String, as
     })
         .then(response => {
             console.log(response)
+            return response
         })
         .catch(error =>{
             console.error(error);
         });
     }
+
+    // export async function getStoreProduct(sId:number, page:number, size:number, sortBy:String, ascending:Boolean):Promise<void | AxiosResponse<any,any>> {
+    //     let response:void | AxiosResponse<any,any> = await axios.get("http://localhost:8080/api/v1/product/getStoreProducts",{
+    //         params:{
+    //             page:page,
+    //             size:size,
+    //             sortBy: sortBy,
+    //             ascending: ascending,
+    //             storeId:sId
+    //         },
+    //         withCredentials:true,
+    // })
+    //     .then(response => {
+    //         console.log(response)
+    //         return response
+    //     })
+    //     .catch(error =>{
+    //         console.error(error);
+    //     });
+        
+    // }
+
 
     export const getStoreProduct = async(sId:number, page:number, size:number, sortBy:String, ascending:Boolean) =>{
         
@@ -97,13 +120,42 @@ export const getProductsPage = async(page:number, size:number, sortBy:String, as
                 storeId:sId
             },
             withCredentials:true,
-    })
-        .then(response => {
-            console.log(response)
         })
-        .catch(error =>{
-            console.error(error);
-        });
+        const data = await response.data
+        let p:productPage = {
+            products:data.content,
+            empty:data.empty,
+            first:data.first,
+            last:data.last,
+            pageNumber:data.number,
+            numberOfElementsPerPage:data.numberOfElements,
+            size:data.size,
+            totalElements:data.totalElements,
+            totalPages:data.totalPages
+        }
+        return p
+        // .then(response => {
+
+        //     p = {
+        //         products:response.data.content,
+        //         empty:response.data.empty,
+        //         first:response.data.first,
+        //         last:response.data.last,
+        //         pageNumber:response.data.number,
+        //         numberOfElementsPerPage:response.data.numberOfElements,
+        //         size:response.data.size,
+        //         totalElements:response.data.totalElements,
+        //         totalPages:response.data.totalPages
+        //     }
+
+
+        //     console.log(p)
+        // })
+        // .catch(error =>{
+        //     console.error(error);
+        // });
+        console.log("then end")
+        return p
     }
 
     export const getStoreProductsByType = async(sId:number, page:number, size:number, sortBy:String, ascending:Boolean, types:Array<string>) =>{
@@ -121,6 +173,7 @@ export const getProductsPage = async(page:number, size:number, sortBy:String, as
     })
         .then(response => {
             console.log(response)
+            return response
         })
         .catch(error =>{
             console.error(error);
