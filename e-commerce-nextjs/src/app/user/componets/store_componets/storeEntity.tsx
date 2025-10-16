@@ -30,6 +30,13 @@ export default function StoreEntity(props:{storeId:number}) {
         getProducts(0, 3, "id", true) 
     }, [productChange])
 
+    const showStoreMenu = async () =>{
+        if(showMenu === false)
+            setShowMenu(true)
+        else
+            setShowMenu(false)
+    }
+
     const getStoreInfo = async () =>{
 
         let s:store = await getStore(props.storeId)
@@ -54,8 +61,7 @@ export default function StoreEntity(props:{storeId:number}) {
     // menu  html and css
     const StoreMenu = () =>{
         return(
-            <div className=" border-2 rounded">
-                <h3> {storeVal?.name} </h3>
+            <div className=" ">
                 <p> {storeVal?.description} </p>
 
                 {/* scrole window for products */}
@@ -72,7 +78,7 @@ export default function StoreEntity(props:{storeId:number}) {
 
                 <AddProductMenu storeId={props.storeId} />
                 <button onClick={()=>{getProducts(0, 3, "id", true)}}>test for return type</button>
-                <button onClick={()=>{setShowMenu(false)}}> hide menu</button>
+                <button onClick={showStoreMenu}> hide menu</button>
 
             </div>
         )
@@ -80,14 +86,15 @@ export default function StoreEntity(props:{storeId:number}) {
     
     return(
         <div>
-            {showMenu? 
-                <div>
-                    <StoreMenu />  
-                </div>:<div>
-                    <div onClick={()=>{setShowMenu(true)}} className=" border-2 rounded">
-                        {storeVal?.name}
-                    </div>     
-                </div>}   
+            <div  className=" border-2 rounded">
+                <div onClick={showStoreMenu}>
+                    {storeVal?.name}
+                </div>
+                {showMenu?
+                <div><StoreMenu /></div>:
+                <div></div>}
+            </div>
+ 
         </div>
     );
 }
