@@ -74,53 +74,58 @@ export default function Product(props:{ p:product}) {
                 </div>:
 
                 
-                <div className=" p-3">
-                    <div className=" relative ">
-                        <button className=" absolute right-0 top-0 bg-red-600" onClick={()=>{setExpandMode(false); setEditMode(false)}}>x</button>
-                    </div>
-                    
-                    <div className="flex justify-between">
-                        <div> pictures </div>
-                        <div>
+                <div className="relative" >
+                        <button 
+                            className=" absolute right-0 top-0 bg-red-600" 
+                            onClick={()=>{setExpandMode(false); setEditMode(false)}}
+                            >
+                                x
+                        </button>
+                    <div className=" p-3">
+                        <div className="flex justify-between">
+                            <div> pictures </div>
+                            <div>
+                                {!editMode?
+                                    <div>
+                                        <h3>{props.p.name}</h3>
+                                        <p><small>{props.p.type}</small></p>
+                                        <p>{props.p.description}</p>
+                                    </div>:
+                                    <div>
+                                        <input type="text" name="" id="" defaultValue={props.p.name}  onChange={ e =>setPName(e.target.value)}/>
+                                        <br />
+                                        <input type="text" name="" id="" defaultValue={props.p.type}  onChange={ e =>setPType(e.target.value)}/>
+                                        <br/>
+                                        <input type="text" name="" id="" defaultValue={props.p.description}  onChange={ e =>setPDescription(e.target.value)}/>
+                                        
+                                    </div>
+                                }
+                            </div>
+                            <div>
+                                {!editMode?
+                            <div>
+                                <p>${props.p.price}</p>
+                            </div>:
+                            <div>
+                                $<input type="number" name="" id="" defaultValue={props.p.price.toString()}  onChange={ e =>setPPrice(Number(e.target.value))}/>
+                            </div>
+                        }
+
+                            </div>
+                        </div>
+                        <div className=" flex">
                             {!editMode?
                                 <div>
-                                    <h3>{props.p.name}</h3>
-                                    <p><small>{props.p.type}</small></p>
-                                    <p>{props.p.description}</p>
+                                    <button onClick={()=>{setEditMode(true)}}>edit</button>
                                 </div>:
                                 <div>
-                                    <input type="text" name="" id="" defaultValue={props.p.name}  onChange={ e =>setPName(e.target.value)}/>
-                                    <br />
-                                    <input type="text" name="" id="" defaultValue={props.p.type}  onChange={ e =>setPType(e.target.value)}/>
-                                    <br/>
-                                    <input type="text" name="" id="" defaultValue={props.p.description}  onChange={ e =>setPDescription(e.target.value)}/>
-                                    
+                                    <button onClick={() =>updateProductHelper()}>update</button>
+                                    <button onClick={()=>{setEditMode(false)}}>cancel</button>
                                 </div>
                             }
                         </div>
-                        <div>
-                            {!editMode?
-                        <div>
-                            <p>${props.p.price}</p>
-                        </div>:
-                        <div>
-                            $<input type="number" name="" id="" defaultValue={props.p.price.toString()}  onChange={ e =>setPPrice(Number(e.target.value))}/>
-                        </div>
-                    }
-
-                        </div>
                     </div>
-                    <div className=" flex">
-                        {!editMode?
-                            <div>
-                                <button onClick={()=>{setEditMode(true)}}>edit</button>
-                            </div>:
-                            <div>
-                                <button onClick={() =>updateProductHelper()}>update</button>
-                                <button onClick={()=>{setEditMode(false)}}>cancel</button>
-                            </div>
-                        }
-                    </div>
+                    
                 </div>
             }
 
