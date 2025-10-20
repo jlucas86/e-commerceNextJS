@@ -77,7 +77,7 @@ export default function StoreEntity(props:{storeId:number}) {
 
 
                 <AddProductMenu storeId={props.storeId} />
-                <button onClick={()=>{getProducts(0, 3, "id", true)}}>test for return type</button>
+                <button onClick={()=>{getStoreProduct(1, 0, 10, "id", true)}}>test for return type</button>
                 <button onClick={showStoreMenu}> hide menu</button>
 
             </div>
