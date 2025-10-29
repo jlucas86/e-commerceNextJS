@@ -26,8 +26,8 @@ export default function Product(props:{ p:product}) {
 
             if( props.p.store !== undefined)
                 updateProduct(props.p.store!==undefined?props.p.store.id:0, p)
-    
-            
+     
+            setEditMode(false)
         }
 
     return(
@@ -74,7 +74,7 @@ export default function Product(props:{ p:product}) {
                 </div>:
 
                 
-                <div className="relative" >
+                <div className="relative border-2 rounded w-full" >
                         <button 
                             className=" absolute right-0 top-0 bg-red-600" 
                             onClick={()=>{setExpandMode(false); setEditMode(false)}}
@@ -128,20 +128,6 @@ export default function Product(props:{ p:product}) {
                     
                 </div>
             }
-
-            {/* <div className="">
-                    update product menu 
-                    <div className="flex">
-                        <input type="text" name="" id="" placeholder={props.p.name}  onChange={ e =>setPName(e.target.value)}/>
-                        <br />
-                        <input type="text" name="" id="" placeholder={props.p.type}  onChange={ e =>setPType(e.target.value)}/>
-                        <br />
-                        <input type="text" name="" id="" placeholder={props.p.description}  onChange={ e =>setPDescription(e.target.value)}/>
-                        <br />
-                        <input type="number" name="" id="" placeholder={props.p.price.toString()}  onChange={ e =>setPPrice(Number(e.target.value))}/>
-                </div>
-                <button onClick={() => updateProductHelper()}>Update Product</button>
-            </div> */}
         </div>
     );
 
